@@ -224,3 +224,40 @@
         // In App.jsx
         import { UserKey } from "./UserComponent.jsx";
         ```
+
+## 6) JSX in React
+
+- There is often some confusion about what JSX stands for. Some say it means JavaScript Extension, while others believe it's JavaScript XML. However, there is no official full form of JSX mentioned on the React official website.
+- It is just a syntax extension for JavaScript that allows you to write HTML-like code inside JavaScript files.
+- JSX makes it easier and cleaner to create React elements and build the UI.
+- With JSX: You can write both together in the same file.
+    - Example:
+        -   ```jsx
+            function App() {
+                const userName = "Ravi Patel";
+                let x = 20;
+                let y = 30;
+
+                return (
+                    <div>
+                        <h1>{userName}</h1>
+                        <h1>{10 + 20 + 30}</h1>
+                        <h1>{x * y}</h1>Development Tools
+                        <button onClick={() => alert("Hello")}>Click</button>
+                    </div>
+                );
+            }
+            ```
+- Without JSX: HTML and JavaScript are written separately.
+    - Example:
+        -   ```jsx
+            import { createElement } from "react";Scripting Languages
+
+            function App() {
+                return createElement(
+                    "div",
+                    { id: "rootDiv" },
+                    createElement("h1", { className: "heading" }, "Hello without JSX")
+                );
+            }
+            ```
