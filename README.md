@@ -79,8 +79,71 @@
         export default App
         ```
 - Why Should Component Names Start With a Capital Letter?
-    - Because React treats lowercase tags like HTML elements (e.g., <div>, <h1>), and uppercase tags as custom React components.
+    - Because React treats lowercase tags like HTML elements (e.g., `<div>`, `<h1>`), and uppercase tags as custom React components.
 - Return Must Have a Single Parent Tag means All JSX returned by a component must be wrapped inside a single parent element like a `<div>` or a fragment `<> </>`.
 - ReactJS is a library and not a framework so the main difference between library and framwork is a below:
     - **Library**: You control the flow (e.g., React).
     - **Framework**: The framework controls the flow; you just follow its structure (e.g., Angular).
+
+## 4) Component
+
+- In React, a component is a small, reusable part of the UI (User Interface).
+- The header, button, footer, or form field can be components.
+- A component can contain other smaller components inside it. i.e. Nested components
+- Role of Components in React
+    - Every part of the UI in React is made using components.
+    - Components can be reused throughout the app.
+    - They make the code modular, readable, and easy to maintain.
+- Rules for Writing Components
+    - Always start component names with a Capital Letter.
+    - Components must return a single parent tag.
+    - Use `<div>...</div>` or `<>...</>` (React Fragment).
+- How to Write Your First React Component:
+- In `App.jsx`:
+    -   ```jsx
+        import './App.css'
+
+        function App() {
+            return (
+                <>
+                    <h1>ReactJS Tutorial</h1>
+                    <br></br><br></br>
+                    <h2>Fruits:</h2>
+                    <Fruit />           {/* Self-closing tag */}
+                    <br></br>
+                    <h2>Colors:</h2>
+                    <Color></Color>     {/* Normal tag */}
+                </>
+            )
+        }
+
+        function Fruit() {
+            return (
+                <>
+                    <ul>
+                        <li>Apple</li>
+                        <li>Banana</li>
+                        <li>Orange</li>
+                    </ul>
+                </>
+            );
+        }
+
+        function Color() {
+            return (
+                <>
+                    <ul>
+                        <li>Orange</li>
+                        <li>White</li>
+                        <li>Green</li>
+                    </ul>
+                </>
+            );
+        }
+
+        export default App
+
+        ```
+- Note that:
+    - A React component must return a single tag.
+    - You cannot return two or more HTML elements side by side without wrapping them.
