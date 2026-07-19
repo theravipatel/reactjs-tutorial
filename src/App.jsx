@@ -1,4 +1,5 @@
 import './App.css'
+import Login, { Register, UserKey } from './UserComponent';
 
 function App() {
   return (
@@ -10,6 +11,13 @@ function App() {
       <br></br>
       <h2>Colors:</h2>
       <Color></Color>
+      <br></br>
+      <hr />
+      <br></br>
+      <h2>Import/Export Component</h2>
+      <Login />
+      <Register />
+      <h6>Imported UserKey = { UserKey } </h6>
     </>
   )
 }

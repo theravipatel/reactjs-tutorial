@@ -61,3 +61,8 @@ body {
   box-sizing: border-box;
   padding: 10px;
 }
+
+hr {
+  width: 100%;
+  color: #ffffff;
+}

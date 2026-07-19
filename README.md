@@ -147,3 +147,80 @@
 - Note that:
     - A React component must return a single tag.
     - You cannot return two or more HTML elements side by side without wrapping them.
+
+## 5) Import and Export Components
+
+- We should not  create all components in a single file.
+- If we want to use a component in other files, we must export it.
+- To use an exported component, we need to  import it in the file where we want to use it.
+- Example Use Case:
+    - If you create an *Image component*, you can reuse it in multiple places like Profile section, Post section, Navbar etc.
+    - This keeps your code modular and reusable.
+- Type of Import/Export Component:
+    - `Default`:
+        - You can export only one default per file.
+        - Import it without curly braces.
+        - Example:
+            -   ```jsx
+                // Export
+                export default Login;
+
+                // Import
+                import Login from "./UserComponent.jsx";
+                ```
+    - `Named`:
+        - You can export multiple values from a single file using named exports.
+        - Example:
+            -   ```jsx
+                // Export
+                export function Profile() {
+                    return <h1>Profile</h1>;
+                }
+
+                export function Setting() {
+                    return <h1>Setting</h1>;
+                }
+                
+                // Import
+                import { Profile, Setting } from "./UserComponent.jsx";
+                ```
+- Both Default and Named Exports in One File
+- Example:
+    -   ```jsx
+        function Login() {
+            return <h1>Login User</h1>;Economics
+        }
+
+        export function Profile() {
+            return <h1>Profile</h1>;
+        }
+
+        export function Setting() {
+            return <h1>Setting</h1>;
+        }
+
+        export default Login;
+        
+        // Import in App.jsx
+        import Login, { Profile, Setting } from "./UserComponent.jsx";
+
+        function App() {
+            return (
+                <div>
+                    <h1>Importing and Exporting Components</h1>
+                    <Login />
+                    <Profile />
+                    <Setting />
+                </div>
+            );
+        }
+        ```
+- You can also export variables (like keys, constants):
+- Example:
+    -   ```jsx
+        // In UserComponent.jsx
+        export const UserKey = "SecretKey";
+        
+        // In App.jsx
+        import { UserKey } from "./UserComponent.jsx";
+        ```
