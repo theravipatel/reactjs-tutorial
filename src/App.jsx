@@ -1,5 +1,6 @@
 import './App.css'
 import Login, { Register, UserKey } from './UserComponent';
+import JsxDemo from './JsxDemoComponent';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
       <Login />
       <Register />
       <h6>Imported UserKey = { UserKey } </h6>
+      <hr />
+      <h2>JSX Simple Demo</h2>
+      <JsxDemo></JsxDemo>
     </>
   )
 }
