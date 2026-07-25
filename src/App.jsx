@@ -4,6 +4,7 @@ import JsxDemo from './JsxDemoComponent';
 import JsxCurlyBraces from './JsxCurlyBracesComponent';
 import FunctionCallClickEvent from './FunctionCallClickEventComponent';
 import MyCount from './StateComponent';
+import ConditionalRendering from './ConditionalRenderingComponent';
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
       <hr />
       <h2>State</h2>
       <MyCount></MyCount>
+      <hr />
+      <h2>Conditional Rendering</h2>
+      <ConditionalRendering></ConditionalRendering>
     </>
   )
 }

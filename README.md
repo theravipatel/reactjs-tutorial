@@ -498,3 +498,92 @@
 
     export default MyCount;
     ```
+
+
+## 12) Conditional Rendering
+- Using the Ternary Operator `(? :)` (Inline JSX)
+    - This is the most common pattern inside JSX blocks for handling direct if-else scenarios concisely.
+    -   ```jsx
+        function StatusMessage({ isOnline }) {
+            return (
+                <div>
+                    User is {isOnline ? <span>Online 🟢</span> : <span>Offline 🔴</span>}
+                </div>
+            );
+        }
+        ```
+- Using the Logical AND Operator `(&&)` (Inline JSX)
+    - Use this "short-circuit" method when you want to render a specific piece of JSX only if a condition is true, and nothing otherwise.
+    - Avoid putting numbers directly on the left side of &&. For example, `0 && <p>text</p>` will render `0` on your screen.
+    - Convert it to a strict boolean using comparisons instead: `count > 0 && <p>text</p>`
+    - ```jsx
+        function NotificationBanner({ hasUnreadMessages }) {
+            return (
+                <div>
+                    { hasUnreadMessages && <p>You have unread mail!</p> }
+                </div>
+            );
+        }
+        ```
+- Using Switch Case or Object Mapping (For Multi-State UI)
+    - When dealing with multiple potential views (like an API status tracking loading, success, or error), use a helper function or an object map.
+    - ```jsx
+        const views = {
+            loading: <Spinner />,
+            success: <DataView />,
+            error: <ErrorMessage />
+        };
+
+        function StatusContainer({ status }) {
+            return <div>{views[status] || <DefaultView />}</div>;
+        }
+        ```
+- Example:
+    -   ```jsx
+        // In ConditionalRenderingComponent.jsx
+        import { useState } from "react";
+
+        function ConditionalRendering() {
+            const [isOnline, setIsOnline] = useState(true);
+            const [hasUnreadMessages, setHasUnreadMessages] = useState(true);
+            const [showView, setShowView] = useState('default');
+            const views = {
+                loading: <p>Clicked Loading</p>,
+                success: <p>Clicked Success</p>,
+                default: <p>Clicked Default</p>
+            };
+
+            return (
+                <div>
+                    <div>
+                        <h5>Using the Ternary Operator `(? :)`</h5>
+                        <div>
+                            <button onClick={ () => setIsOnline(!isOnline) }>Toggle Status</button>
+                            User is {isOnline ? <span>Online 🟢</span> : <span>Offline 🔴</span>}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5>Using the Logical AND Operator `(&&)`</h5>
+                        <div>
+                            <button onClick={ () => setHasUnreadMessages(!hasUnreadMessages) }>Toggle Status</button>
+                            { hasUnreadMessages && <p>You have unread mail!</p> }
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5>Using Switch Case or Object Mapping</h5>
+                        <div>
+                            <button onClick={ () => setShowView('loading') }>loading</button>
+                            <button onClick={ () => setShowView('success') }>success</button>
+                            <button onClick={ () => setShowView('default') }>default</button>
+                            <br></br>
+                            <div>{views[showView] || views['default']}</div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        export default ConditionalRendering;
+        ```
