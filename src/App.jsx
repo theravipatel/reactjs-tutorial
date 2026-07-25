@@ -2,6 +2,7 @@ import './App.css'
 import Login, { Register, UserKey } from './UserComponent';
 import JsxDemo from './JsxDemoComponent';
 import JsxCurlyBraces from './JsxCurlyBracesComponent';
+import FunctionCallClickEvent from './FunctionCallClickEventComponent';
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
       <hr />
       <h2>JSX Curly Braces</h2>
       <JsxCurlyBraces></JsxCurlyBraces>
+      <hr />
+      <h2>Function Call and Click Event in ReactJS</h2>
+      <FunctionCallClickEvent></FunctionCallClickEvent>
     </>
   )
 }

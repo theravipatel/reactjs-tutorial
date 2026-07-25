@@ -380,3 +380,48 @@
 
     export default JsxCurlyBraces;
     ```
+
+
+## 9) Function call and Click event handling
+- To call a function in React JS, we need to follow below rules:
+    - Use camelCase: `onClick` instead of `onclick`.
+    - Don't use quotes `""`: JSX treats quoted functions as strings.
+    - Do not call the function immediately using `()`. Just pass the reference like `onClick={demoFunction}`.
+- Using `onClick={demoFunction}`, means we are passing function definition, not function name like in Plain JavaScript.
+- To pass the argument with function we can not write `onClick={ paramFunction("Apple") }` because it will call the function immediately, not on click. So we need to use `onClick={ () => paramFunction("Apple") }` ensures the function runs only when the button is clicked.
+- Example:
+-   ```jsx
+    // In FunctionCallClickEventComponent.jsx
+    function FunctionCallClickEvent() {
+        function demoFunction() {
+            alert("This is from the demo function.");
+        }
+        const arrowFunction = () => {
+            alert("This is from the Arrow function!");
+        };
+        const paramFunction = (name) => {
+            alert("You have clicked " + name);
+        };
+
+        return (
+            <div>
+                <div>
+                    <h6>Normal Function</h6>
+                    <button onClick={demoFunction}>Call Normal Function</button>
+                </div>
+                <div>
+                    <h6>Arrow Function</h6>
+                    <button onClick={arrowFunction}>Call Arrow Function</button>
+                </div>
+                <div>
+                    <h6>Function with Parameter</h6>
+                    <button onClick={ () => paramFunction("Apple") }>Click Apple</button>
+                    <br />
+                    <button onClick={ () => paramFunction("Orange") }>Click Orange</button>
+                </div>
+            </div>
+        );
+    }
+
+    export default FunctionCallClickEvent;
+    ```
