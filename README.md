@@ -48,7 +48,7 @@
         <div id="root"></div>
         <script type="module" src="/src/main.jsx"></script>
         ```
-    - The <script> tag loads main.jsx.
+    - The `<script>` tag loads main.jsx.
     - The root element is the starting point of the React app.
 - In `main.jsx` File
     -   ```jsx
@@ -425,3 +425,21 @@
 
     export default FunctionCallClickEvent;
     ```
+
+
+## 10) Upgrade React Version
+- To see what version of React you're currently using:
+    - Open your project folder.
+    - Open the `package.json` file.
+    - Look under the `dependencies` section:
+    -   ```json
+        "dependencies": {
+            "react": "^19.2.7",
+            "react-dom": "^19.2.7"
+        },
+        ```
+- To upgrade to the latest version, we just need to run below command:
+-   ```cmd
+    npm install react@latest react-dom@latest
+    ```
+- After upgrading, test if everything works fine.
