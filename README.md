@@ -443,3 +443,58 @@
     npm install react@latest react-dom@latest
     ```
 - After upgrading, test if everything works fine.
+
+
+## 11) State
+- State is like a variable but smarter.
+- It stores dynamic data and automatically re-renders the component whenever the state changes.
+- React does not understand normal JavaScript variables for UI updates.
+- If you want to update and reflect values in the UI, use state.
+- We can call it as Data Container.
+- State is mutable (it can change).
+- It allows React components to keep track of data that changes over time.
+- React will automatically update the UI when the state value changes.
+- React re-renders the component every time you call the update function.
+- You can use multiple state values in a single component.
+- State makes your React components interactive and responsive.
+- To use State, we need to use `Hooks` like `use` keyword i.e. `useState`, `useEffect` etc.
+- `Hooks` are special functions that let you use React features in functional components.
+- With hooks, you can use:
+    - State (useState)
+    - Lifecycle methods (useEffect)
+    - Other advanced features
+- How to Use useState:
+    - Import useState like `import { useState } from "react";`
+    - In component write like 
+        -   ```jsx
+            const [fruit, setFruit] = useState("Apple");
+            const handleFruit = () => {
+                setFruit("Banana");
+            };
+            ```
+    - Here,
+        - fruit is the current value.
+        - setFruit is the function to update the value.
+        - Clicking the button changes like `<button onClick={handleFruit}>Change Fruit Name</button>`, "Apple" to "Banana" and updates the UI.
+- Example:
+-   ```jsx
+    // In StateComponent.jsx
+    import { useState } from "react";
+
+    function MyCount() {
+        const [count1, setCount1] = useState(0);
+        const [count2, setCount2] = useState(10);
+
+        return (
+            <div>
+                <h6>Count 1 is { count1 }</h6>
+                <h6>Count 2 is { count2 }</h6>
+                <button onClick={ () => setCount1(count1 + 1) }>Increase Count by 1</button>
+                <br></br>
+                <button onClick={ () => setCount2(count2 - 1) }>Decrease Count by 1</button>
+            </div>
+        );
+    }
+
+    export default MyCount;
+    ```

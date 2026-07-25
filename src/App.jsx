@@ -3,6 +3,7 @@ import Login, { Register, UserKey } from './UserComponent';
 import JsxDemo from './JsxDemoComponent';
 import JsxCurlyBraces from './JsxCurlyBracesComponent';
 import FunctionCallClickEvent from './FunctionCallClickEventComponent';
+import MyCount from './StateComponent';
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
       <hr />
       <h2>Function Call and Click Event in ReactJS</h2>
       <FunctionCallClickEvent></FunctionCallClickEvent>
+      <hr />
+      <h2>State</h2>
+      <MyCount></MyCount>
     </>
   )
 }
