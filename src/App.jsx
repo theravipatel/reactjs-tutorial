@@ -1,6 +1,7 @@
 import './App.css'
 import Login, { Register, UserKey } from './UserComponent';
 import JsxDemo from './JsxDemoComponent';
+import JsxCurlyBraces from './JsxCurlyBracesComponent';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
       <hr />
       <h2>JSX Simple Demo</h2>
       <JsxDemo></JsxDemo>
+      <hr />
+      <h2>JSX Curly Braces</h2>
+      <JsxCurlyBraces></JsxCurlyBraces>
     </>
   )
 }
