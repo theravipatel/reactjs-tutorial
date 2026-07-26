@@ -683,3 +683,89 @@
 
         export default PropsChild;
         ```
+
+
+## 14) Pass JSX Content with Props
+- We can pass JSX between components by using the special children prop or by passing JSX as a named prop.
+- Using the children Prop:
+    - Nest the JSX directly between the opening and closing tags of the child component.
+    - The receiving component accesses it automatically using `props.children`.
+    -   ```jsx
+        // Parent Component
+        function App() {
+            return (
+                <Card>
+                    <h2>Special Offer!</h2>
+                    <p>Sign up today to get a 20% discount.</p>
+                </Card>
+            );
+        }
+        // Child Component
+        function Card({ children }) {
+            return (
+                <div className="card-wrapper">
+                    {children} 
+                </div>
+            );
+        }
+        ```
+- Using Named Props:
+    - Pass JSX chunks as standard named properties if your component needs to place content into multiple specific locations (like a header and a footer).
+    - ```jsx
+        // Parent Component
+        function App() {
+            return (
+                <Layout 
+                    header={<h1>My Dashboard</h1>}
+                    body={<p>Welcome back, user! Here is your data.</p>}
+                />
+            );
+        }
+        // Child Component
+        function Layout({ header, body }) {
+            return (
+                <div className="layout">
+                    <header className="top-bar">{header}</header>
+                    <main className="main-content">{body}</main>
+                </div>
+            );
+        }
+        ```
+- Example:
+    -   ```jsx
+        // In PassJsxPropsParentComponent.jsx
+        import PassJsxPropsChild from "./PassJsxPropsChildComponent";
+
+        function PassJsxPropsParent() {
+            return (
+                <div>
+                    <h6>Parent Component</h6>
+                    <p>-------</p>
+                    <PassJsxPropsChild
+                        header={<p><u>This is my Header</u></p>}
+                        footer={<p><u>This is my footer</u></p>}
+                    >
+                        <p>Hello Everyone,</p>
+                        <p>This is all about the content of the body.</p>
+                    </PassJsxPropsChild>
+                </div>
+            );
+        }
+
+        export default PassJsxPropsParent;
+        ```
+    -   ```jsx
+        // In PassJsxPropsChildComponent.jsx
+        function PassJsxPropsChild({ children, header, footer }) {
+            return (
+                <div>
+                    <h6>Child Component</h6>
+                    <header>{ header }</header>
+                    { children }
+                    <footer>{ footer }</footer>
+                </div>
+            );
+        }
+
+        export default PassJsxPropsChild;
+        ```

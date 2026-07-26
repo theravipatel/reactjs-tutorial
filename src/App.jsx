@@ -6,6 +6,7 @@ import FunctionCallClickEvent from './FunctionCallClickEventComponent';
 import MyCount from './StateComponent';
 import ConditionalRendering from './ConditionalRenderingComponent';
 import PropsParent from './PropsParentComponent';
+import PassJsxPropsParent from './PassJsxPropsParentComponent';
 
 function App() {
   return (
@@ -42,6 +43,9 @@ function App() {
       <hr />
       <h2>Props</h2>
       <PropsParent />
+      <hr />
+      <h2>Pass JSX Content as Props</h2>
+      <PassJsxPropsParent />
     </>
   )
 }
