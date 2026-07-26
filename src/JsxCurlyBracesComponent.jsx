@@ -62,7 +62,7 @@ function JsxCurlyBraces() {
                 </li>
                 <li>
                     <h4>Using HTML Tag Attributes</h4>
-                    <input type="text" name="name" value={name} />
+                    <input type="text" name="name" defaultValue={name} />
                     <br /><br />
                     <img src={imagePath} alt="India Flag" width="200px" />
                 </li>

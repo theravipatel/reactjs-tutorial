@@ -587,3 +587,99 @@
 
         export default ConditionalRendering;
         ```
+
+
+## 13) Props
+- Props (short for "properties") are like function parameters.
+- They allow you to pass data from one component to another (typically from parent to child).
+- We can pass data like `<User name="Ravi Patel" />`.
+- To retrieve that data we need to write as below:
+    - 1) Using simple function parameter
+    -   ```jsx
+        function User(props) {
+            return (
+                <div>
+                    <h1>{props.name}</h1>
+                </div>
+            );
+        }
+        ```
+    - 2) Using destructuring the props
+    -   ```jsx
+        function User({name}) {
+            return (
+                <div>
+                    <h1>{name}</h1>
+                </div>
+            );
+        }
+        ```
+- We can also pass multiple props as below:
+    - ```jsx
+        const rollnumber = 10;
+        const addressObjData = {
+            state: "Gujarat",
+            country: "Bharat",
+        };
+        const colorArrayData = ["Orange", "White", "Red"];
+        <User
+            name="Ravi Patel"
+            email="ravi@patel.com"
+            phone={123456}
+            rollnumber={rollnumber}
+            addressObjData={addressObjData}
+            colorArrayData={colorArrayData}
+        />
+        ```
+- Default props are a way of providing default values for props that are not required by the component.
+- The cleanest and most efficient way to assign fallback values is by destructuring props directly inside your function signature. i.e. `function Profile({ name = "Guest", role = "Member" }) { }`
+- Example:
+    -   ```jsx
+        // In PropsParentComponent.jsx
+        import PropsChild from "./PropsChildComponent";
+
+        function PropsParent() {
+            const rollnumber = 10;
+            const addressObjData = {
+                state: "Gujarat",
+                country: "Bharat",
+            };
+            const colorArrayData = ["Orange", "White", "Red"];
+            return (
+                <div>
+                    <h6>Parent Component</h6>
+                    <p>-------</p>
+                    <PropsChild
+                        name="Ravi Patel"
+                        email="ravi@patel.com"
+                        phone={123456}
+                        rollnumber={rollnumber}
+                        addressObjData={addressObjData}
+                        colorArrayData={colorArrayData}
+                    />
+                </div>
+            );
+        }
+
+        export default PropsParent;
+        ```
+    -   ```jsx
+        // In PropsChildComponent.jsx
+        function PropsChild({ name, email, phone, rollnumber, addressObjData, colorArrayData }) {
+            return (
+                <div>
+                    <h6>Child Component</h6>
+                    <ul>
+                        <li>Name: { name }</li>
+                        <li>Email: { email }</li>
+                        <li>Phone: { phone }</li>
+                        <li>Rollnumber: { rollnumber }</li>
+                        <li>Address: { addressObjData.state + ", " + addressObjData.country }</li>
+                        <li>Color: { colorArrayData[0] }</li>
+                    </ul>
+                </div>
+            );
+        }
+
+        export default PropsChild;
+        ```
