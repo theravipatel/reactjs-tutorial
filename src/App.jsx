@@ -8,6 +8,7 @@ import ConditionalRendering from './ConditionalRenderingComponent';
 import PropsParent from './PropsParentComponent';
 import PassJsxPropsParent from './PassJsxPropsParentComponent';
 import GetSetClearInputField from './GetSetClearInputFieldComponent';
+import GetSetClearCheckboxField from './GetSetClearCheckboxFieldComponent';
 
 function App() {
   return (
@@ -48,8 +49,11 @@ function App() {
       <h2>Pass JSX Content as Props</h2>
       <PassJsxPropsParent />
       <hr />
-      <h2>Get, Set and Clear Input field Value</h2>
+      <h2>Controlled Component - Get, Set and Clear Input field Value</h2>
       <GetSetClearInputField />
+      <hr />
+      <h2>Get, Set and Clear Checkbox field Value</h2>
+      <GetSetClearCheckboxField />
     </>
   )
 }
