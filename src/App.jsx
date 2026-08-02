@@ -7,6 +7,7 @@ import MyCount from './StateComponent';
 import ConditionalRendering from './ConditionalRenderingComponent';
 import PropsParent from './PropsParentComponent';
 import PassJsxPropsParent from './PassJsxPropsParentComponent';
+import GetSetClearInputField from './GetSetClearInputFieldComponent';
 
 function App() {
   return (
@@ -46,6 +47,9 @@ function App() {
       <hr />
       <h2>Pass JSX Content as Props</h2>
       <PassJsxPropsParent />
+      <hr />
+      <h2>Get, Set and Clear Input field Value</h2>
+      <GetSetClearInputField />
     </>
   )
 }

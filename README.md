@@ -769,3 +769,54 @@
 
         export default PassJsxPropsChild;
         ```
+
+
+## 15) Controlled Component - Get, Set and Clear Input field Value
+- A `Controlled Component` is a form input field whose value is controlled by React using state.
+- That means:
+    - The value typed in the input is stored in a `useState()` variable.
+    - Whenever the user types something, the state is updated.
+    - The input field shows the value from the state.
+- To get, set and cleat input field value, we can use the `useState` hook to manage the input value.
+- We can define a state variable `val` using `useState`, then `onChange` event captures user input and updates the state for which we need to use `event.target.value` to get the current value of the input.
+- Example:
+    -   ```jsx
+        // In GetSetClearInputFieldComponent.jsx
+        import { useState } from "react";
+
+        function GetSetClearInputField() {
+            const [nameVal, setNameVal] = useState("");
+            return (
+                <div>
+                    <table width="500px" border="1" cellPadding="5">
+                        <tbody>
+                            <tr>
+                                <td>Name:</td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        id="name"
+                                        value={nameVal}
+                                        onChange={(event) => setNameVal(event.target.value)}
+                                    />
+                                </td>
+                                <td>
+                                    <button onClick={() => setNameVal("")}>Reset</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Typed value:</td>
+                                <td colSpan="2">{nameVal}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default GetSetClearInputField;
+        ```
+
+
+## 16)
