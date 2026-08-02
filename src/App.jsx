@@ -9,6 +9,7 @@ import PropsParent from './PropsParentComponent';
 import PassJsxPropsParent from './PassJsxPropsParentComponent';
 import GetSetClearInputField from './GetSetClearInputFieldComponent';
 import GetSetClearCheckboxField from './GetSetClearCheckboxFieldComponent';
+import GetSetClearRadioAndDropdownField from './GetSetClearRadioAndDropdownFieldComponent';
 
 function App() {
   return (
@@ -54,6 +55,9 @@ function App() {
       <hr />
       <h2>Get, Set and Clear Checkbox field Value</h2>
       <GetSetClearCheckboxField />
+      <hr />
+      <h2>Get, Set and Clear Radio button & Dropdown field Value</h2>
+      <GetSetClearRadioAndDropdownField />
     </>
   )
 }
