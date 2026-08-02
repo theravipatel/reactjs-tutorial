@@ -1031,3 +1031,60 @@
 
         export default LoopInJsx;
         ```
+
+
+## 19) Reuse Component in Loop
+- Instead of writting all the html code inside the jsx and looping for the data, we can make new component and pass the data to that componenet as prop to reuse it so inside the JSX, code will be clear & readable.
+- Example:
+    -   ```jsx
+        // In ReuseComponentInLoopComponent.jsx
+        import ReuseComponent from "./ReuseComponent";
+
+        function ReuseComponentInLoop() {
+            const userData = [
+                { id: 1, name: "User 1", email: "user1@test.com" },
+                { id: 2, name: "User 2", email: "user2@test.com" },
+                { id: 3, name: "User 3", email: "user3@test.com" },
+            ];
+            return (
+                <div>
+                    <table width="500px" border="1" cellPadding="5">
+                        <thead>
+                            <tr>
+                                <td>Id</td>
+                                <td>Name</td>
+                                <td>Email</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                userData.map((user) => {
+                                    return (
+                                        <ReuseComponent key={ user.id } user={ user } />
+                                    );
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default ReuseComponentInLoop;
+        ```
+    -   ```jsx
+        // In ReuseComponent.jsx
+        function ReuseComponent({ user }) {
+            console.log(user);
+            
+            return (
+                <tr>
+                    <td>{ user.id }</td>
+                    <td>{ user.name }</td>
+                    <td>{ user.email }</td>
+                </tr>
+            );;
+        }
+
+        export default ReuseComponent;
+        ```

@@ -11,6 +11,7 @@ import GetSetClearInputField from './GetSetClearInputFieldComponent';
 import GetSetClearCheckboxField from './GetSetClearCheckboxFieldComponent';
 import GetSetClearRadioAndDropdownField from './GetSetClearRadioAndDropdownFieldComponent';
 import LoopInJsx from './LoopInJsxComponent';
+import ReuseComponentInLoop from './ReuseComponentInLoopComponent';
 
 function App() {
   return (
@@ -62,6 +63,9 @@ function App() {
       <hr />
       <h2>Loop in the JSX</h2>
       <LoopInJsx />
+      <hr />
+      <h2>Reuse Component in Loop</h2>
+      <ReuseComponentInLoop />
     </>
   )
 }
