@@ -1184,3 +1184,43 @@
 
     export default StudentScore;
     ```
+
+
+## 21) Hooks in React JS
+- React Hooks are built-in JavaScript functions that allow you to use state, lifecycle methods and other React features inside functional components.
+- It is introduced in React 16.8.
+- They eliminated the structural need for complex JavaScript class components, making our frontend code significantly shorter and easier to maintain.
+- Why React Hooks Were Created:
+    - Before hooks, managing a component's lifecycle or local state required writing a JavaScript class.
+    - This often led to:
+        - Bloated Code: Verbose class syntax required constructors, binding methods, and calling `this.state`.
+        - Scattered Logic: Splitting related code across disconnected lifecycle methods like `componentDidMount` and `componentWillUnmount`.
+        - Poor Reusability: Difficulty sharing stateful behavior between components without altering component hierarchies.
+- Most Common Built-In Hooks:
+    - `useState`: Stores and updates local variables directly inside the component.
+    - `useEffect`: Orchestrates side effects such as pulling external API data, setting up timers, or interacting with the DOM.
+    - `useContext`: Subscribes directly to global context systems to pull in global data (like themes) without drilling props down manually through intermediate parents.
+    - `useRef`: Persists mutable values across renders without re-triggering component UI updates, or references underlying physical DOM nodes directly.
+    - `useMemo / useCallback`: Cache calculated values or generated function instances to prevent expensive performance bottlenecks.
+- The Core Rules of Hooks:
+    - To ensure React links state data to the proper elements correctly during rapid user interactions, we must follow two strict rules:
+        - `Only Call Hooks at the Top Level`: Never invoke hooks inside conditional blocks, JavaScript loops, or nested callback functions.
+        - `Only Call Hooks from React Functions`: Invoke hooks exclusively within functional components or inside your own engineered Custom Hooks.
+- Example:
+-   ```jsx
+    import React, { useState } from 'react';
+
+    function Counter() {
+        // Declares a state variable named "count" starting at 0
+        const [count, setCount] = useState(0);
+
+        return (
+            <div>
+                <p>You clicked {count} times</p>
+                <button onClick={() => setCount(count + 1)}>
+                    Increment
+                </button>
+            </div>
+        );
+    }
+    ```
