@@ -15,6 +15,7 @@ import ReuseComponentInLoop from './ReuseComponentInLoopComponent';
 import ArrayNestedLoop from './ArrayNestedLoopComponent';
 import UseEffectHook from './UseEffectHookComponent';
 import InlineStyle from './InlineStyleComponent';
+import DynamicConditionalInlineStyle from './DynamicConditionalInlineStyleComponent';
 
 function App() {
   return (
@@ -78,6 +79,9 @@ function App() {
       <hr />
       <h2>Inline Style</h2>
       <InlineStyle />
+      <hr />
+      <h2>Dynamic and Conditional Inline Style</h2>
+      <DynamicConditionalInlineStyle />
     </>
   )
 }
