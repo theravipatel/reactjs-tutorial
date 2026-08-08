@@ -13,6 +13,7 @@ import GetSetClearRadioAndDropdownField from './GetSetClearRadioAndDropdownField
 import LoopInJsx from './LoopInJsxComponent';
 import ReuseComponentInLoop from './ReuseComponentInLoopComponent';
 import ArrayNestedLoop from './ArrayNestedLoopComponent';
+import UseEffectHook from './UseEffectHookComponent';
 
 function App() {
   return (
@@ -70,6 +71,9 @@ function App() {
       <hr />
       <h2>Array Nested Looping</h2>
       <ArrayNestedLoop />
+      <hr />
+      <h2>useEffect Hook</h2>
+      <UseEffectHook />
     </>
   )
 }

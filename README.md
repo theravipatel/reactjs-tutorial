@@ -1224,3 +1224,137 @@
         );
     }
     ```
+
+
+## 22) useEffect Hook in React JS
+- The `useEffect` hook in React allows you to handle side effects in functional components.
+- Side effects are tasks that happen outside the scope of a standard UI render, such as fetching data, setting up subscriptions, managing timers, or changing the DOM manually.
+- It replaces the classic class component lifecycle methods:
+    - componentDidMount
+    - componentDidUpdate
+    - componentWillUnmount
+- The `useEffect` hook accepts two arguments. The second argument is optional. i.e. `useEffect(<function>, <dependency>)`
+- Basic Syntax:
+    -   ```jsx
+        import { useEffect } from 'react';
+
+        useEffect(() => {
+            // Your side effect code goes here
+
+            return () => {
+                // Optional cleanup function goes here
+            };
+        }, [dependencies]);
+        ```
+- The behavior of `useEffect` is controlled entirely by its second argument, known as the `dependency array`.
+- We can handle the dependencies as follow:
+    - No dependency array passed:
+        - It will run `after every single render of the component`.
+        - Analogy to Class Lifecycles: `componentDidMount` + `componentDidUpdate`
+        -   ```jsx
+            useEffect(() => {
+                //Runs on every render
+            });
+            ```
+    - An empty dependency array:
+        - It will run `only once after the initial render (mounting)`.
+        - Analogy to Class Lifecycles: `componentDidMount`
+        -   ```jsx
+            useEffect(() => {
+                //Runs only on the first render
+            }, []);
+            ```
+    - With props or state values:
+        - It will run `on the initial render and whenever the specified props or state values change`.
+        - Analogy to Class Lifecycles: `componentDidUpdate`
+        -   ```jsx
+            useEffect(() => {
+                //Runs on the first render
+                // //And any time any dependency value changes
+            }, [prop1, state1]);
+            ```
+- The Importance of the Cleanup Function
+    - If our effect sets up something persistent (like a timer, a network subscription, or a global event listener), we must return a cleanup function.
+    - React will execute this cleanup function right before the component unmounts, or right before running the effect again on a dependency change.
+    - This prevents severe performance issues like memory leaks.
+- Example:
+    -   ```jsx
+        // In UseEffectHookComponent.jsx
+        import { useEffect, useState } from "react";
+
+        function UseEffectHook() {
+
+            const [callEveryTimeCounter, setCallEveryTimeCounter] = useState(0);
+            const [callOnceCounter, setCallOnceCounter] = useState(0);
+            const [callOnStateChangeCounter, setCallOnStateChangeCounter] = useState(0);
+            
+            function callEveryTimeCounterFn() {
+                console.log("callEveryTimeCounterFn called every time", callEveryTimeCounter);
+            }
+
+            function callOnceCounterFn() {
+                console.log("callOnceCounterFn called will be execute only once", callOnceCounter);
+            }
+
+            function callOnStateChangeCounterFn() {
+                console.log("callOnStateChangeCounterFn called when state change", callOnceCounter);
+            }
+
+            /*
+                // without useEffect below code will always call 
+                callEveryTimeCounterFn();
+                callOnceCounterFn();
+            */
+
+            
+            // Called every time component renders
+            useEffect(() => {
+                callEveryTimeCounterFn();
+            });
+
+            // Called only once when component mounts
+            useEffect(() => {
+                callOnceCounterFn();
+            }, []);
+
+            // Called only when callOnStateChangeCounter state change
+            useEffect(() => {
+                callOnStateChangeCounterFn();
+            }, [callOnStateChangeCounter]);
+
+            return (
+                <div>
+                    <table border="1" cellPadding="1">
+                        <thead>
+                            <tr>
+                                <td>Action</td>
+                                <td>Value</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <button onClick={ () => setCallEveryTimeCounter(callEveryTimeCounter+1) }>Call Everytime Counter</button>
+                                </td>
+                                <td>{ callEveryTimeCounter }</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button onClick={ () => setCallOnceCounter(callOnceCounter+1) }>Call Once Counter</button>
+                                </td>
+                                <td>{ callOnceCounter }</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button onClick={ () => setCallOnStateChangeCounter(callOnStateChangeCounter+1) }>Call On State Change Counter</button>
+                                </td>
+                                <td>{ callOnStateChangeCounter }</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default UseEffectHook;
+        ```
