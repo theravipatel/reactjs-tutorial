@@ -14,6 +14,7 @@ import LoopInJsx from './LoopInJsxComponent';
 import ReuseComponentInLoop from './ReuseComponentInLoopComponent';
 import ArrayNestedLoop from './ArrayNestedLoopComponent';
 import UseEffectHook from './UseEffectHookComponent';
+import InlineStyle from './InlineStyleComponent';
 
 function App() {
   return (
@@ -74,6 +75,9 @@ function App() {
       <hr />
       <h2>useEffect Hook</h2>
       <UseEffectHook />
+      <hr />
+      <h2>Inline Style</h2>
+      <InlineStyle />
     </>
   )
 }

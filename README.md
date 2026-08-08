@@ -1563,3 +1563,34 @@
     - **Syntax**: Utilized by installing frameworks like Tailwind CSS.
     - **Pros**: Drastically speeds up production; ensures highly consistent layout grids, spacing, and design systems.
     - **Cons**: Leads to long, cluttered class strings within your JSX markup.
+
+
+## 25) Inline Style in React JS
+- In React JS, the style is passed as a JavaScript object inside JSX.
+- CSS properties must be written in `camelCase`.
+- Use `commas (,)`, not `semicolons (;)`, after each property.
+- Values are in quotes if they are strings.
+- In HTML, we will write style as string `("color: red;")`
+- In React, we will write style as object `({ color: 'red' })`
+- Example:
+    -   ```jsx
+        // In InlineStyleComponent.jsx
+        function InlineStyle() {
+            const styleObj = {
+                color: '#FBC02D',
+                backgroundColor: '#607D8B',
+                margin: '10px 0',
+                padding: '5px',
+                borderRadius: '5px',
+                border: '2px solid #E91E63'
+            };
+            return (
+                <div>
+                    <h4 style={{ color: '#3949AB', backgroundColor: '#FF8A65', margin: '10px 0', padding: '5px', borderRadius: '5px', border: '2px solid #43A047' }}>Inline style inside div</h4>
+                    <h4 style={ styleObj }>Inline style using object</h4>
+                </div>
+            );
+        }
+
+        export default InlineStyle;
+        ```
