@@ -1500,3 +1500,66 @@
 
         export default LifeCycle;
         ```
+
+
+## 24) Styling in React JS
+- In React JS, there are five primary ways to apply styles to components.
+- 1) Inline Style
+    - We can pass styles directly to elements using a JavaScript object via the `style attribute`.
+    - **Syntax**: Uses `camelCase` for property names instead of hyphens (e.g., `backgroundColor` instead of `background-color`).
+    - **Pros**: Great for quick prototyping and dynamic styles calculated on the fly.
+    - **Cons**: No support for pseudo-classes (like `:hover`), media queries, or clean separation of concerns.
+    - Example:
+        -   ```jsx
+            <div style={{ color: 'blue', fontSize: '16px' }}>Hello World!</div>
+            ```
+- 2) External Style
+    - You can write normal CSS or Sass in a separate file and import it directly into your React component.
+    - **Syntax**: Uses the `className` attribute instead of the traditional HTML class attribute.
+    - **Pros**: Familiar syntax; allows use of standard preprocessors like Sass or Less.
+    - **Cons**: All styles are globally scoped, meaning class names can conflict and overwrite each other across different components.
+    - Example:
+        -   ```jsx
+           import './styles.css';
+            ```
+- 3) CSS Modules
+    - This approach writes regular CSS but scopes it locally to the specific component by auto-generating unique class names.
+    - **Syntax**: Files must be named with the `.module.css` extension and imported as an object.
+    - **Pros**: Eliminates class name conflicts entirely without needing additional library dependencies.
+    - **Cons**: Applying global style overrides or dynamic prop-based sharing can be verbose.
+    - Example:
+        -   ```jsx
+            // In MyComponent.module.css
+            .container {
+                background-color: #CCCCCC;
+                padding: 10px;
+            }
+            ```
+        -   ```jsx
+            // In MyComponent.jsx
+            import styles from './MyComponent.module.css';
+
+            <div className={styles.container}>Hello World!</div>
+            ```
+- 4) Styled Components / Emotion (CSS in JS)
+    - This methodology leverages external libraries to embed CSS directly inside your JavaScript files using tagged template literals.
+    - **Syntax**: Highly popular via third-party packages like Styled Components(https://styled-components.com/) or Emotion(https://emotion.sh/docs/introduction).
+    - **Pros**: Dynamically alters components using React props, nests easily, and automatically handles scoping.
+    - **Cons**: Slightly slower runtime performance; increases the overall JavaScript bundle size.
+    - Example:
+        -   ```jsx
+            // In MyComponent.jsx
+            import styled from 'styled-components';
+
+            const Button = styled.button`
+                background-color: ${props => props.primary ? 'blue' : 'gray'};
+                color: white;
+                padding: 10px 20px;
+                border: none;
+            `;
+            ```
+- 5) Utility-First Frameworks (Externa CSS Library/Framework)
+    - Instead of writing custom CSS, we apply pre-defined atomic utility classes directly within our JSX structure.
+    - **Syntax**: Utilized by installing frameworks like Tailwind CSS.
+    - **Pros**: Drastically speeds up production; ensures highly consistent layout grids, spacing, and design systems.
+    - **Cons**: Leads to long, cluttered class strings within your JSX markup.
