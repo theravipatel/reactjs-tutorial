@@ -1358,3 +1358,145 @@
 
         export default UseEffectHook;
         ```
+
+
+## 23) useEffect Hook for Life Cycle Methods in React JS
+- React lifecycle methods dictate the series of predictable events that a component goes through from its birth to its death.
+- Traditionally used in class components, these events are split into three primary phases:
+    - `Mounting`:
+        - This phase happens when an instance of a component is created and inserted into the DOM.
+        - Key Class Method: `componentDidMount()`
+        - Hook Equivalent (useEffect): `useEffect(() => {}, [])` (Empty dependency array)
+    - `Updating`:
+        - An update occurs when there is a change to the component's internal state or its parent props.
+        - Key Class Method: `componentDidUpdate()`
+        - Hook Equivalent (useEffect): `useEffect(() => {}, [dependency])`
+    - `Unmounting`:
+        - This phase cleans up memory before the component disappears from the DOM.
+        - Key Class Method: `componentWillUnmount()`
+        - Hook Equivalent (useEffect): `useEffect(() => { return () => {} }, [])` (Cleanup function)
+- Modern functional React code manages these same phases using the `useEffect` Hook.
+- Example:
+    -   ```jsx
+        // In UseEffectHookComponent.jsx
+        import { useEffect, useState } from "react";
+        import LifeCycle from "./LifeCycleComponent";
+
+        function UseEffectHook() {
+
+            const [callEveryTimeCounter, setCallEveryTimeCounter] = useState(0);
+            const [callOnceCounter, setCallOnceCounter] = useState(0);
+            const [callOnStateChangeCounter, setCallOnStateChangeCounter] = useState(0);
+            const [showCounter, setShowCounter] = useState(true);
+            
+            function callEveryTimeCounterFn() {
+                console.log("callEveryTimeCounterFn called every time", callEveryTimeCounter);
+            }
+
+            function callOnceCounterFn() {
+                console.log("callOnceCounterFn called will be execute only once", callOnceCounter);
+            }
+
+            function callOnStateChangeCounterFn() {
+                console.log("callOnStateChangeCounterFn called when state change", callOnceCounter);
+            }
+
+            /*
+                // without useEffect below code will always call 
+                callEveryTimeCounterFn();
+                callOnceCounterFn();
+            */
+
+            
+            // Called every time component renders
+            useEffect(() => {
+                callEveryTimeCounterFn();
+            });
+
+            // Called only once when component mounts
+            useEffect(() => {
+                callOnceCounterFn();
+            }, []);
+
+            // Called only when callOnStateChangeCounter state change
+            useEffect(() => {
+                callOnStateChangeCounterFn();
+            }, [callOnStateChangeCounter]);
+
+            return (
+                <div>
+                    <table border="1" cellPadding="1">
+                        <thead>
+                            <tr>
+                                <td>Action</td>
+                                <td>Value</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <button onClick={ () => setCallEveryTimeCounter(callEveryTimeCounter+1) }>Call Everytime Counter</button>
+                                </td>
+                                <td>{ callEveryTimeCounter }</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button onClick={ () => setCallOnceCounter(callOnceCounter+1) }>Call Once Counter</button>
+                                </td>
+                                <td>{ callOnceCounter }</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button onClick={ () => setCallOnStateChangeCounter(callOnStateChangeCounter+1) }>Call On State Change Counter</button>
+                                </td>
+                                <td>{ callOnStateChangeCounter }</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button onClick={ () => setShowCounter(!showCounter) }>Toggle Counter</button>
+                                </td>
+                                <td>
+                                    {
+                                        showCounter ? <LifeCycle data={callEveryTimeCounter} /> : null
+                                    }
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default UseEffectHook;
+        ```
+    -   ```jsx
+        // In LifeCycleComponent.jsx
+        import { useEffect } from "react";
+
+        function LifeCycle({ data }) {
+            // Called when mount
+            useEffect(() => {
+                console.log("LifeCycle Method - called when mount");
+            }, []);
+
+            // Called when update
+            useEffect(() => {
+                console.log("LifeCycle Method - called when update");
+            }, [data]);
+
+            // Called when unmount
+            useEffect(() => {
+                return (() => {
+                    console.log("LifeCycle Method - called when unmount");
+                });
+            }, []);
+
+            return (
+                <div>
+                    <h6><i>{ data }</i></h6>
+                </div>
+            );
+        }
+
+        export default LifeCycle;
+        ```

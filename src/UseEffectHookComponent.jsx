@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import LifeCycle from "./LifeCycleComponent";
 
 function UseEffectHook() {
 
     const [callEveryTimeCounter, setCallEveryTimeCounter] = useState(0);
     const [callOnceCounter, setCallOnceCounter] = useState(0);
     const [callOnStateChangeCounter, setCallOnStateChangeCounter] = useState(0);
+    const [showCounter, setShowCounter] = useState(true);
     
     function callEveryTimeCounterFn() {
         console.log("callEveryTimeCounterFn called every time", callEveryTimeCounter);
@@ -67,6 +69,16 @@ function UseEffectHook() {
                             <button onClick={ () => setCallOnStateChangeCounter(callOnStateChangeCounter+1) }>Call On State Change Counter</button>
                         </td>
                         <td>{ callOnStateChangeCounter }</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button onClick={ () => setShowCounter(!showCounter) }>Toggle Counter</button>
+                        </td>
+                        <td>
+                            {
+                                showCounter ? <LifeCycle data={callEveryTimeCounter} /> : null
+                            }
+                        </td>
                     </tr>
                 </tbody>
             </table>
