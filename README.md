@@ -1088,3 +1088,99 @@
 
         export default ReuseComponent;
         ```
+
+
+## 20) Array Nested Looping
+- Example:
+-   ```jsx
+    // In ArrayNestedLoopComponent.jsx
+    import StudentDetail from "./StudentDetailComponent";
+
+    function ArrayNestedLoop() {
+        const studentData = [
+            {
+                name: "Ravi Patel",
+                roll_number: "1",
+                city: "Rajkot",
+                subject_score: [
+                    {
+                        subject1: 90,
+                        subject2: 100,
+                        subject3: 95,
+                    }
+                ],
+            },
+            {
+                name: "John Doe",
+                roll_number: "2",
+                city: "Amdavad",
+                subject_score: [
+                    {
+                        subject1: 80,
+                        subject2: 70,
+                        subject3: 75,
+                    }
+                ],
+            },
+        ];
+        return (
+            <div>
+                <h4>Student Data</h4>
+                {
+                    studentData.map((student, index) => (
+                        <StudentDetail key={index} student={student} />
+                    ))
+                }
+            </div>
+        );
+    }
+
+    export default ArrayNestedLoop; 
+    ```
+-   ```jsx
+    // In StudentDetailComponent.jsx
+    import StudentScore from "./StudentScoreComponent";
+
+    function StudentDetail({ student }) {
+        return (
+            <div style={{
+                border: "1px solid #FBC02D",
+                borderRadius: "10px",
+                padding: "5px",
+                margin: "5px"
+            }}>
+                <h4 style={{ margin: "5px 0" }}>{ student.name }</h4>
+                <ul style={{ margin: "5px 0", fontSize: "0.83em" }}>
+                    <li>Roll No.: { student.roll_number }</li>
+                    <li>City: { student.city }</li>
+                    <li>
+                        Subject Scores:
+                        <StudentScore subject_score={student.subject_score} />
+                    </li>
+                </ul>
+            </div>
+        );
+    }
+
+    export default StudentDetail;
+    ```
+-   ```jsx
+    // In StudentScoreComponent.jsx
+    function StudentScore({ subject_score }) {
+        return (
+            <ul>
+                {
+                    subject_score.map((subject_score, index) => (
+                        <div key={index}>
+                            <li>Subject 1 - { subject_score.subject1 } </li>
+                            <li>Subject 2 - { subject_score.subject2 } </li>
+                            <li>Subject 3 - { subject_score.subject3 } </li>
+                        </div>
+                    ))
+                }
+            </ul>
+        );
+    }
+
+    export default StudentScore;
+    ```

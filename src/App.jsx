@@ -12,6 +12,7 @@ import GetSetClearCheckboxField from './GetSetClearCheckboxFieldComponent';
 import GetSetClearRadioAndDropdownField from './GetSetClearRadioAndDropdownFieldComponent';
 import LoopInJsx from './LoopInJsxComponent';
 import ReuseComponentInLoop from './ReuseComponentInLoopComponent';
+import ArrayNestedLoop from './ArrayNestedLoopComponent';
 
 function App() {
   return (
@@ -66,6 +67,9 @@ function App() {
       <hr />
       <h2>Reuse Component in Loop</h2>
       <ReuseComponentInLoop />
+      <hr />
+      <h2>Array Nested Looping</h2>
+      <ArrayNestedLoop />
     </>
   )
 }
