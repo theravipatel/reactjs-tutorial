@@ -18,6 +18,7 @@ import InlineStyle from './InlineStyleComponent';
 import DynamicConditionalInlineStyle from './DynamicConditionalInlineStyleComponent';
 import ExternalStyle from './ExternalStyleComponent';
 import MyCssModules from './MyCssModulesComponent';
+import StyledComponent from './StyledComponent';
 
 function App() {
   return (
@@ -90,6 +91,9 @@ function App() {
       <hr />
       <h2>Style with CSS Modules</h2>
       <MyCssModules />
+      <hr />
+      <h2>Styled Components</h2>
+      <StyledComponent />
     </>
   )
 }

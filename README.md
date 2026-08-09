@@ -1803,3 +1803,121 @@
 
         export default MyCssModules
         ```
+
+
+## 29) Styled Components
+- Styled Components is a CSS-in-JS library that allows us to write actual CSS code inside your JavaScript or TypeScript files, scoped to individual components.
+- Install the package via your terminal: `npm install styled-components`
+- How to use:
+    - Tagged Template Literals (Standard Method):
+        - This is the default recommended method. It uses backticks **(`)**, letting us to write standard, unaltered CSS syntax directly inside your JavaScript file.
+        - Example:
+            -   ```jsx
+                const PrimaryButton = styled.button`
+                    background-color: #0070f3;
+                    color: white;
+                    font-size: 16px;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #0051a2; /* Native CSS nesting and pseudo-classes */
+                    }
+                `;
+
+                // <PrimaryButton>Click Me</PrimaryButton>
+                ```
+    - Object Syntax (CSS-in-JS Style Object):
+        - Instead of backticks, we can pass a JavaScript object directly into the style constructor function.
+        - This syntax uses camelCase for CSS properties and requires quotes for string values.
+        - Example:
+            -   ```jsx
+                const Box = styled.div({
+                    backgroundColor: 'royalblue',
+                    padding: '20px',
+                    borderRadius: '8px',
+                    color: '#fff',
+                    '&:hover': {
+                        backgroundColor: 'navy',
+                    }
+                });
+
+                // <Box></Box>
+                ```
+    - Overriding Existing Components:
+        - To reuse base styles on a new element, pass the existing component into the `styled()` function as a wrapper.
+        - Example:
+            -   ```jsx
+                const BaseButton = styled.button`
+                    color: black;
+                    border: 1px solid black;
+                `;
+
+                // Inherits all styles from BaseButton and overrides/adds new ones
+                const TomatoButton = styled(BaseButton)`
+                    color: red;
+                    border-color: red;
+                `;
+
+                // <BaseButton>Black Color Button</BaseButton>
+                // <TomatoButton>Red Color Button</TomatoButton>
+                ```
+- Example:
+    -   ```jsx
+        // In StyledComponent.jsx
+        import styled from "styled-components";
+
+        function StyledComponent() {
+            const Box = styled.div({
+                backgroundColor: '#222',
+                padding: '20px',
+                borderRadius: '8px',
+                color: '#fff',
+                '&:hover': {
+                    backgroundColor: '#37474F',
+                }
+            });
+            const PrimaryButton = styled.button`
+                background-color: #0070f3;
+                color: white;
+                font-size: 16px;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                width: 200px;
+
+                &:hover {
+                    background-color: #0051a2; /* Native CSS nesting and pseudo-classes */
+                }
+            `;
+
+            const DangerButton = styled(PrimaryButton)`
+                background-color: #EF5350;
+                &:hover {
+                    background-color: #D32F2F; /* Native CSS nesting and pseudo-classes */
+                }
+            `;
+
+            return (
+                <Box>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <PrimaryButton>Click Me</PrimaryButton>
+                                </td>
+                                <td>
+                                    <DangerButton>Danger Click</DangerButton>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </Box>
+            );
+        }
+
+        export default StyledComponent;
+        ```
