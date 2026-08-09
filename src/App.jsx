@@ -21,6 +21,7 @@ import MyCssModules from './MyCssModulesComponent';
 import StyledComponent from './StyledComponent';
 import BootstrapStyle from './BootstrapStyleComponent';
 import UseRefHook from './UseRefHookComponent';
+import UncontrolledInputField from './UncontrolledInputFieldComponent';
 
 function App() {
   return (
@@ -102,6 +103,9 @@ function App() {
       <hr />
       <h2>useRef Hook in React JS</h2>
       <UseRefHook />
+      <hr />
+      <h2>Uncontrolled Component - Get Form Input Field Values</h2>
+      <UncontrolledInputField />
     </>
   )
 }

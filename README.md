@@ -2019,3 +2019,58 @@
 
         export default UseRefHook;
         ```
+
+
+## 32) Uncontrolled Component - Get Form Input Field Values
+- An `uncontrolled component` in React JS is a form element whose value and state are managed directly by the browser's `Document Object Model (DOM)` instead of by React state.
+- Which means, the form element controls itself - React does not track or manage its value directly.
+- Instead of tracking every keystroke with a state variable (`useState`) and updating it via an onChange event, we pull the value from the DOM only when we need it (like during a form submission) using a React `ref`.
+- Example:
+    -   ```jsx
+        // In UncontrolledInputFieldComponent.jsx
+        import { useRef } from "react";
+        import { Button } from "react-bootstrap";
+
+        function UncontrolledInputField() {
+            const usernameRef = useRef("");
+
+            // Using DOM method
+            const handleInputDom = () => {
+                const username = document.querySelector("#usernameDom").value;
+                console.log("usernameDom = ", username);
+            }
+
+            // Using react ref
+            const handleInputRef = () => {
+                const username = usernameRef.current.value;
+                console.log("usernameRef = ", username);
+            }
+
+            return (
+                <div>
+                    <table className="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" id="usernameDom" className="form-control" />
+                                </td>
+                                <td>
+                                    <Button variant="primary" onClick={ handleInputDom }>Submit DOM</Button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" id="usernameRef" ref={ usernameRef } className="form-control" />
+                                </td>
+                                <td>
+                                    <Button variant="secondary" onClick={ handleInputRef }>Submit Ref</Button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default UncontrolledInputField;
+        ```
