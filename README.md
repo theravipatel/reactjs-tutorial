@@ -1721,3 +1721,85 @@
 
         export default ExternalStyle;
         ```
+
+
+## 28) Style with CSS Modules
+- CSS Modules allow us to write locally scoped CSS files that automatically avoid class name conflicts in our React application.
+- Why we should use CSS Modules:
+    - **No Name Clashing**: Build tools compile `.btnPrimary` into a unique global string like `_btnPrimary_q1obu_1`.
+    - **Dead Code Elimination**: Unused classes can be caught easily during production builds.
+    - **Standard CSS**: You can still use standard CSS features like pseudo-classes `(:hover)`, media queries, and animations natively.
+- How to use:
+    - Name your CSS file using the `.module.css` naming convention and write standard CSS classes inside it.
+    - Import the CSS file as a JavaScript object i.e. `import styles from './Button.module.css';`.
+    - Map the object properties directly to the className attribute i.e. `className={styles.btnPrimary}`.
+- Handle Advanced Style Use Cases:
+    - **Multiple Classes**:
+        - Use template literals to join multiple module classes together.
+        - ```<div className={`${styles.btnPrimary} ${styles.large}`}>```
+    - **Conditional Classes**:
+        - Combine conditions using standard JavaScript logic.
+        - ```<button className={isError ? styles.errorBtn : styles.btnPrimary}>```
+    - **Global Classes**:
+        - Mix a global utility class with local styles.
+        - ```<div className={`global-container ${styles.btnPrimary}`}>```
+    - **Sass/SCSS Support**:
+        - Rename the file to `.module.scss` if your build system has preprocessor support.
+- Example:
+    -   ```css
+        /* In src/css/MyCssModules.module.css */
+        .externa-style-container {
+            width: 100%;
+            background-color: #222;
+        }
+        .externa-style-container .table,
+        .externa-style-container .table tr,
+        .externa-style-container .table td {
+            border: 1px solid #444;
+            padding: 5px;
+            border-collapse: collapse;
+        }
+        .externa-style-container .title {
+            font-size: 24px;
+            text-align: center;
+            color: #f23f12;
+        }
+        .externa-style-container .img {
+            width: 200px;
+            padding: 5px;
+            border: 1px solid #545454;
+        }
+        .externa-style-container .description {
+            color: #fff;
+        }
+        ```
+    -   ```jsx
+        // In MyCssModulesComponent.jsx
+        import style from './css/MyCssModules.module.css';
+
+        function MyCssModules() {
+            return (
+                <div className={ style['externa-style-container'] }>
+                    <table className={ style.table }>
+                        <tbody>
+                            <tr>
+                                <td colSpan={2}>
+                                    <h3 className={ style.title }>What is Artificial Intelligence?</h3>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="https://www.zabala.eu/wp-content/uploads/2023/11/Artificial-intelligente-and-consultancy.jpg" alt="What is Artificial Intelligence?" className={ style.img } />
+                                </td>
+                                <td>
+                                    <p className={ style.description }>Artificial Intelligence (AI) is a set of technologies that allows computers and machines to copy human thinking, learning, and problem-solving. It helps systems process data, spot patterns, and make choices. </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default MyCssModules
+        ```

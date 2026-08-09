@@ -1,0 +1,24 @@
+.externa-style-container {
+    width: 100%;
+    background-color: #222;
+}
+.externa-style-container .table,
+.externa-style-container .table tr,
+.externa-style-container .table td {
+    border: 1px solid #444;
+    padding: 5px;
+    border-collapse: collapse;
+}
+.externa-style-container .title {
+    font-size: 24px;
+    text-align: center;
+    color: #f23f12;
+}
+.externa-style-container .img {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #545454;
+}
+.externa-style-container .description {
+    color: #fff;
+}

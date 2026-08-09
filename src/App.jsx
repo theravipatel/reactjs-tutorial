@@ -17,6 +17,7 @@ import UseEffectHook from './UseEffectHookComponent';
 import InlineStyle from './InlineStyleComponent';
 import DynamicConditionalInlineStyle from './DynamicConditionalInlineStyleComponent';
 import ExternalStyle from './ExternalStyleComponent';
+import MyCssModules from './MyCssModulesComponent';
 
 function App() {
   return (
@@ -86,6 +87,9 @@ function App() {
       <hr />
       <h2>External CSS Style in React JS</h2>
       <ExternalStyle />
+      <hr />
+      <h2>Style with CSS Modules</h2>
+      <MyCssModules />
     </>
   )
 }
