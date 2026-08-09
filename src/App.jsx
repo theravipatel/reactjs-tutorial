@@ -20,6 +20,7 @@ import ExternalStyle from './ExternalStyleComponent';
 import MyCssModules from './MyCssModulesComponent';
 import StyledComponent from './StyledComponent';
 import BootstrapStyle from './BootstrapStyleComponent';
+import UseRefHook from './UseRefHookComponent';
 
 function App() {
   return (
@@ -98,6 +99,9 @@ function App() {
       <hr />
       <h2>Use Bootsrap Style in React JS</h2>
       <BootstrapStyle />
+      <hr />
+      <h2>useRef Hook in React JS</h2>
+      <UseRefHook />
     </>
   )
 }

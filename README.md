@@ -1964,3 +1964,58 @@
 
         export default BootstrapStyle;
         ```
+
+
+## 31) useRef Hook in React JS
+- The `useRef` Hook allows you to persist values between renders.
+- It can be used to store a mutable value that does not cause a re-render when updated.
+- It can be used to access a DOM element directly.
+- If we tried to count how many times our application renders using the `useState` Hook, we would be caught in an infinite loop since this Hook itself causes a re-render.
+- To avoid this, we can use the `useRef` Hook.
+- `useRef` only returns one item. It returns an Object called `.current`.
+- How to use:
+    - Create a ref using the useRef Hook: `const inputElement = useRef();`.
+    - Attach the ref to a DOM element using the ref attribute in JSX: `<input type="text" ref={inputElement} />`.
+    - Access the DOM element using the current property: `inputElement.current.value="123"` or `inputElement.current.focus()`.
+- Example:
+    -   ```jsx
+        // In UseRefHookComponent.jsx
+        import { useRef } from "react";
+        import { Button } from "react-bootstrap";
+
+        function UseRefHook() {
+            const inputRef = useRef(null);
+            const focusHandler = () => {
+                console.log("inputRef => ", inputRef);
+                inputRef.current.focus();
+            }
+            const setValueHandler = () => {
+                console.log("inputRef => ", inputRef);
+                inputRef.current.value = "Default Value";
+                inputRef.current.style.color = "yellow";
+            }
+            return (
+                <div>
+                    <table className="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td colSpan={2}>
+                                    <input className="form-control" type="text" ref={inputRef} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <Button variant="primary" onClick={ focusHandler }>Focus Input</Button>
+                                </td>
+                                <td>
+                                    <Button variant="secondary" onClick={ setValueHandler }>Set Default Value in Input</Button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default UseRefHook;
+        ```
