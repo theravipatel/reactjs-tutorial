@@ -16,6 +16,7 @@ import ArrayNestedLoop from './ArrayNestedLoopComponent';
 import UseEffectHook from './UseEffectHookComponent';
 import InlineStyle from './InlineStyleComponent';
 import DynamicConditionalInlineStyle from './DynamicConditionalInlineStyleComponent';
+import ExternalStyle from './ExternalStyleComponent';
 
 function App() {
   return (
@@ -82,6 +83,9 @@ function App() {
       <hr />
       <h2>Dynamic and Conditional Inline Style</h2>
       <DynamicConditionalInlineStyle />
+      <hr />
+      <h2>External CSS Style in React JS</h2>
+      <ExternalStyle />
     </>
   )
 }

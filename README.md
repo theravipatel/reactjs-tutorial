@@ -1656,3 +1656,68 @@
 
         export default DynamicConditionalInlineStyle;
         ```
+
+
+## 27) External CSS Style in React JS
+- In React JS, we can use external CSS by creating a standalone `.css` stylesheet and importing it directly into our component file using JavaScript `import` syntax.
+- Instead of using the traditional HTML `class` attribute, React utilizes the `className` attribute to assign styles to JSX elements.
+- Note that `Traditional external CSS` files imported into a React component are not `scoped` to that component. When build tools like Webpack bundle our app, these styles become global. If you define `.title` in `Home.css` and another `.title` in `About.css`, they will overwrite each other and conflict.
+- How to use:
+    - Create a standard CSS file (i.e., `style.css`) in our project directory.
+    - Import and Use inside the React Component.
+- Example:
+    -   ```css
+        /* In src/css/style.css */
+        .externa-style-container {
+            width: 100%;
+            background-color: #222;
+        }
+        .externa-style-container .table,
+        .externa-style-container .table tr,
+        .externa-style-container .table td {
+            border: 1px solid #444;
+            padding: 5px;
+            border-collapse: collapse;
+        }
+        .externa-style-container .title {
+            font-size: 24px;
+            text-align: center;
+            color: #f23f12;
+        }
+        .externa-style-container .img {
+            width: 200px;
+            padding: 5px;
+            border: 1px solid #545454;
+        }
+        .externa-style-container .description {
+            color: #fff;
+        }
+        ```
+    -   ```jsx
+        // In ExternalStyleComponent.jsx
+        import './css/style.css';
+
+        function ExternalStyle() {
+            return (
+                <div className="externa-style-container">
+                    <table className="table">
+                        <tr>
+                            <td colSpan={2}>
+                                <h3 className="title">What is Artificial Intelligence?</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="https://www.zabala.eu/wp-content/uploads/2023/11/Artificial-intelligente-and-consultancy.jpg" alt="What is Artificial Intelligence?" className="img" />
+                            </td>
+                            <td>
+                                <p className="description">Artificial Intelligence (AI) is a set of technologies that allows computers and machines to copy human thinking, learning, and problem-solving. It helps systems process data, spot patterns, and make choices. </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            );
+        }
+
+        export default ExternalStyle;
+        ```
