@@ -19,6 +19,7 @@ import DynamicConditionalInlineStyle from './DynamicConditionalInlineStyleCompon
 import ExternalStyle from './ExternalStyleComponent';
 import MyCssModules from './MyCssModulesComponent';
 import StyledComponent from './StyledComponent';
+import BootstrapStyle from './BootstrapStyleComponent';
 
 function App() {
   return (
@@ -94,6 +95,9 @@ function App() {
       <hr />
       <h2>Styled Components</h2>
       <StyledComponent />
+      <hr />
+      <h2>Use Bootsrap Style in React JS</h2>
+      <BootstrapStyle />
     </>
   )
 }

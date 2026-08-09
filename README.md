@@ -1921,3 +1921,46 @@
 
         export default StyledComponent;
         ```
+
+
+## 30) Use Bootsrap Style in React JS
+- We can use Bootstrap in React.js by choosing one of two primary approaches: vanilla Bootstrap classes via standard CSS or the native react-bootstrap library.
+- The native component library (react-bootstrap) is highly recommended because it removes heavy dependencies like jQuery and treats Bootstrap components as true, accessible React elements.
+- The native component library (react-bootstrap) replaces vanilla Bootstrap JavaScript with native React components, preventing DOM manipulation bugs and ensuring better accessibility.
+- Install the package via your terminal: `npm install react-bootstrap bootstrap`
+- How to use:
+    - Add the stylesheet import to your global entry file, typically `src/main.jsx` or `src/index.js`.
+        - `import 'bootstrap/dist/css/bootstrap.min.css';`
+    - Import specific pieces from the React Bootstrap library inside your components.
+        - `import Button from 'react-bootstrap/Button';` or `import { Button } from 'react-bootstrap';`
+    - Use it like `<Button variant="primary">Click Me</Button>`
+- Example:
+    -   ```jsx
+        // In src/main.jsx
+        import 'bootstrap/dist/css/bootstrap.min.css';
+        ```
+    -   ```jsx
+        // In BootstrapStyleComponent.jsx
+        import { Button } from "react-bootstrap";
+
+        function BootstrapStyle() {
+            return (
+                <div>
+                    <table className="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <Button variant="primary">Bootstrap Button</Button>
+                                </td>
+                                <td>
+                                    <button>Normal Button</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default BootstrapStyle;
+        ```
