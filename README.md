@@ -2202,3 +2202,88 @@
 
         export default PassRefChild;
         ```
+
+
+## 35) useFormStatus Hook in React JS
+- The `useFormStatus` hook is a built-in React Hook that provides status information about the last parent `<form>` submission.
+- It acts like a context consumer, tracking if a form is actively submitting data without requiring us to manually pass down state or props.
+- Unlike most standard React hooks, it must be imported from `react-dom` rather than the core `react` package.
+- The `useFormStatus` hook does not accept any parameters. It returns an object with the following four properties:
+    - `pending`: A boolean value indicating if the parent form is currently submitting.
+    - `data`: A FormData object containing the values of the form being submitted.
+    - `method`: A string showing the submission HTTP method ('get' or 'post').
+    - `action`: A reference to the function passed to the parent form's action prop.
+- Syntax:
+    -   ```jsx
+        import { useFormStatus } from 'react-dom';
+        const { pending, data, method, action } = useFormStatus();
+        ```
+- The useFormStatus hook must be called from a child component rendered inside the `<form>` element.
+- If you call it inside the exact same component that defines the `<form>` tag, it will not work, and `pending` will always return false.
+- It only detects the status of a form that surrounds it hierarchically.
+- Example:
+    -   ```jsx
+        // In UseFormStatusParentComponent.jsx
+        import UseFormStatusChild from "./UseFormStatusChildComponent";
+
+        function UseFormStatusParent() {
+            const submitForm = async () => {
+                await new Promise( res => setTimeout(res, 3000));      
+                console.log("form submitted.");  
+            }
+            
+            return (
+                <div>
+                    <form action={ submitForm } method="post">
+                        <UseFormStatusChild />
+                    </form>
+                </div>
+            );
+        }
+
+        export default UseFormStatusParent;
+        ```
+    -   ```jsx
+        // In UseFormStatusChildComponent.jsx
+        import { Button } from "react-bootstrap";
+        import { useFormStatus } from "react-dom";
+
+        function UseFormStatusChild() {
+            const { pending, data, method, action } = useFormStatus();
+            console.log("Is pending = ", pending);
+            console.log("data = ", data);
+            console.log("method = ", method);
+            console.log("action = ", action);
+            return (
+                <div>
+                    <table className="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label htmlFor="username">Username:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="username" name="username" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label htmlFor="password">Password:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="password" name="password" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colSpan={2}>
+                                    <Button type="submit" variant="primary">{ pending ? "Submitting..." : "Submit" }</Button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default UseFormStatusChild;
+        ```

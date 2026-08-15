@@ -24,6 +24,7 @@ import UseRefHook from './UseRefHookComponent';
 import UncontrolledInputField from './UncontrolledInputFieldComponent';
 import PassFunctionParent from './PassFunctionParentComponent';
 import PassRefParent from './PassRefParentComponent';
+import UseFormStatusParent from './UseFormStatusParentComponent';
 
 function App() {
   return (
@@ -114,6 +115,9 @@ function App() {
       <hr />
       <h2>Pass/Forward Ref in React JS (v19)</h2>
       <PassRefParent />
+      <hr />
+      <h2>useFormStatus Hook in React JS</h2>
+      <UseFormStatusParent />
     </>
   )
 }
