@@ -2074,3 +2074,56 @@
 
         export default UncontrolledInputField;
         ```
+
+## 33) Pass Function in Component as Props
+- We can define the function in the parent component and then assign it as an attribute to the child component.
+- This pattern is the primary way for a child component to trigger state updates or actions inside its parent.
+- Example:
+    -   ```jsx
+        // In PassFunctionChildComponent.jsx
+        import PassFunctionChild from "./PassFunctionChildComponent";
+
+        function PassFunctionParent() {
+            
+            const whichFruit = (name) => {
+                alert("It is " + name + "...!!!");
+            }
+
+            return (
+                <div>
+                    <PassFunctionChild whichFruit={whichFruit} />
+                </div>
+            );
+        }
+
+        export default PassFunctionParent;
+        ```
+    -   ```jsx
+        // In PassFunctionChildComponent.jsx
+        import { Button } from "react-bootstrap";
+
+        function PassFunctionChild({ whichFruit }) {
+
+            return (
+                <div>
+                    <table className="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <Button variant="danger" onClick={() => whichFruit("Apple") }>Click Apple</Button>
+                                </td>
+                                <td>
+                                    <Button variant="warning" onClick={() => whichFruit("Banana") }>Click Banana</Button>
+                                </td>
+                                <td>
+                                    <Button variant="warning" onClick={() => whichFruit("Orange") }>Click Orange</Button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default PassFunctionChild;
+        ```
