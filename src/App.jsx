@@ -25,6 +25,7 @@ import UncontrolledInputField from './UncontrolledInputFieldComponent';
 import PassFunctionParent from './PassFunctionParentComponent';
 import PassRefParent from './PassRefParentComponent';
 import UseFormStatusParent from './UseFormStatusParentComponent';
+import UseTransition from './UseTransitionComponent';
 
 function App() {
   return (
@@ -118,6 +119,9 @@ function App() {
       <hr />
       <h2>useFormStatus Hook in React JS</h2>
       <UseFormStatusParent />
+      <hr />
+      <h2>useTransition Hook in React JS</h2>
+      <UseTransition />
     </>
   )
 }

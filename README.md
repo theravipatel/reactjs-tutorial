@@ -2287,3 +2287,55 @@
 
         export default UseFormStatusChild;
         ```
+
+
+## 36) useTransition Hook in React JS
+- The `useTransition` hook is a React Hook that lets you update the state without blocking the user interface.
+- It splits your state updates into two categories: 
+    - `Urgent updates` (like typing in an input) which render immediately.
+        - Example:
+            -   ```jsx
+                const [query, setQuery] = useState('');
+                // 1. Urgent Update: Update input field text instantly
+                setQuery(e.target.value);
+                ```
+    - `Transition updates` (like filtering a massive list) which can be interrupted and delayed in the background.
+        - Example:
+            -   ```jsx
+                const [isPending, startTransition] = useTransition();
+                // 2. Non-Urgent Update: Lower priority computation handled in background
+                startTransition(() => {
+                    const hugeFilteredList = generateLargeList(e.target.value);
+                    setList(hugeFilteredList);
+                });
+                ```
+- Syntax: `const [isPending, startTransition] = useTransition();`
+    - `isPending`: A boolean value that returns true while the background transition is actively rendering.
+    - `startTransition`: A function that wraps your state update to demote its rendering priority.
+- Example:
+    -   ```jsx
+        // In UseTransitionComponent.jsx
+        import { useTransition } from "react";
+        import { Button } from "react-bootstrap";
+
+        function UseTransition() {
+
+            const [isPending, startTransition] = useTransition();
+
+            const handleSubmit = () => {
+                startTransition(async () => {
+                    await new Promise(res => setTimeout(res, 3000));
+                });
+            }
+
+            return (
+                <div>
+                    <Button variant="primary" onClick={ handleSubmit } disabled={isPending}>
+                        { isPending ? "Submitting..." : "Submit" }
+                    </Button>
+                </div>
+            );
+        }
+
+        export default UseTransition;
+        ```
