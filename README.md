@@ -2339,3 +2339,85 @@
 
         export default UseTransition;
         ```
+
+
+## 37) Keep Your Components Pure in React JS
+- Keeping your components pure means ensuring they always return the same JSX given the same inputs (props, state, and context) and perform no side effects during rendering.
+- React relies heavily on this principle to optimize rendering, handle updates predictably, and keep your application fast.
+- The Rules of Purity:
+    - To write pure components, you must stick to these core constraints:
+        - `Same inputs, same output`: A component must strictly use its props, state, and context to compute the JSX it returns.
+        - `No render-phase mutations`: Never modify any variable or object that existed before the component started rendering.
+        - `Mind your business`: A component should calculate its JSX independently without trying to coordinate with or modify other components during rendering.
+- Why Purity Matters in React:
+    - `Strict Mode Verification`: 
+        - React uses StrictMode during development to intentionally run our component functions twice.
+        - If our component is impure, the two passes will yield different outputs, exposing hidden bugs immediately.
+    - `Performance Enhancements`: 
+        - Pure components allow React to skip unnecessary re-renders.
+        - We can wrap functional components in React.memo to easily cache and reuse the previous render output when props remain unchanged.
+    - `Safer Concurrent Rendering`:
+        - Modern React features can pause, abort, or restart component rendering based on priority.
+        - If a component is pure, stopping it mid-render causes no side-effect damage.
+- Example of Impure Component:
+    - This component modifies an external variable during the render phase.
+    - If this component renders multiple times, the output changes constantly
+    -   ```jsx
+        let guestCount = 0; // External variable
+
+        function App() {
+            return (
+                <div>
+                    <Cup />
+                </div>
+            );
+        }
+
+        const Cup = () => {
+            // Bad: Modifying a pre-existing variable during render!
+            guestCount = guestCount + 1;
+            return (
+                <div>
+                    <h2>Tea cup for guest #{guestCount}</h2>
+                </div>
+            );
+        }
+
+        export default App;
+
+
+        /**
+         * OUTPUT:
+         * 
+         * Tea cup for guest #2
+         */
+        ```
+- Example of Pure Component:
+    - This component reads directly from its inputs (props) and does not touch the outside world during calculation
+    -   ```jsx
+        function App() {
+            return (
+                <div>
+                    <Cup guestCount={1} />
+                </div>
+            );
+        }
+
+        const Cup = ({ guestCount }) => {
+            // Good: Purely calculating output based on the input prop
+            return (
+                <div>
+                    <h2>Tea cup for guest #{guestCount}</h2>
+                </div>
+            );
+        }
+
+        export default App;
+
+
+        /**
+         * OUTPUT:
+         * 
+         * Tea cup for guest #1
+         */
+        ```
