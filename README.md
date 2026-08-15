@@ -2127,3 +2127,78 @@
 
         export default PassFunctionChild;
         ```
+
+
+## 34) Pass/Forward Ref in React JS (v19)
+- In React 19, `forwardRef` is officially deprecated because we can now pass `ref` directly as a standard prop to function components. 
+- In the earlier version of React JS, it is done as below
+    -   ```jsx
+        // In Child Component
+        import { forwardRef } from "react";
+        function UserInput (props, ref) {
+            return(
+                <div>
+                    <input type="text" ref={ref}  />
+                </div>
+            );
+        }
+        export default forwardRef(UserInput)
+        ```
+- But in React JS v19, we do not need to wrap our child component with `forwardRef()` anymore. Simply destructure `ref` directly from the props list.
+- Example:
+    -   ```jsx
+        // In PassRefParentComponent.jsx
+        import { useRef } from "react";
+        import { Button } from "react-bootstrap";
+        import PassRefChild from "./PassRefChildComponent";
+
+        function PassRefParent() {
+            const inputRef = useRef(null);
+
+            const updateInputHandler = () => {
+                inputRef.current.value = 5000;
+                inputRef.current.focus();
+            }
+
+            const clearInputHandler = () => {
+                inputRef.current.value = "";
+                inputRef.current.focus();
+            }
+
+            return (
+                <div>
+                    <table className="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td colSpan={2}>
+                                    <PassRefChild inputRef={inputRef} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <Button variant="primary" onClick={ updateInputHandler }>Update Input</Button>
+                                </td>
+                                <td>
+                                    <Button variant="danger" onClick={ clearInputHandler }>Clear Input</Button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default PassRefParent; 
+        ```
+    -   ```jsx
+        // In PassRefChildComponent.jsx
+        function PassRefChild({ inputRef }) {
+            return (
+                <div>
+                    <input className="form-control" type="text" ref={inputRef} />
+                </div>
+            );
+        }
+
+        export default PassRefChild;
+        ```

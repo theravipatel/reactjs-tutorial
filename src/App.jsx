@@ -23,6 +23,7 @@ import BootstrapStyle from './BootstrapStyleComponent';
 import UseRefHook from './UseRefHookComponent';
 import UncontrolledInputField from './UncontrolledInputFieldComponent';
 import PassFunctionParent from './PassFunctionParentComponent';
+import PassRefParent from './PassRefParentComponent';
 
 function App() {
   return (
@@ -110,6 +111,9 @@ function App() {
       <hr />
       <h2>Pass Function in Component as Props</h2>
       <PassFunctionParent />
+      <hr />
+      <h2>Pass/Forward Ref in React JS (v19)</h2>
+      <PassRefParent />
     </>
   )
 }
