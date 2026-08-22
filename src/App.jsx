@@ -31,6 +31,7 @@ import LiftingStateParent from './LiftingStateParentComponent';
 import UpdateObject from './UpdateObjectComponent';
 import UpdateArray from './UpdateArrayComponent';
 import UseActionStateHook from './UseActionStateHookComponent';
+import UseIdHook from './UseIdHookComponent';
 
 function App() {
   return (
@@ -142,6 +143,9 @@ function App() {
       <hr />
       <h2>useActionState Hook in React JS</h2>
       <UseActionStateHook />
+      <hr />
+      <h2>useId Hook in React JS</h2>
+      <UseIdHook />
     </>
   )
 }
