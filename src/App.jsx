@@ -27,6 +27,7 @@ import PassRefParent from './PassRefParentComponent';
 import UseFormStatusParent from './UseFormStatusParentComponent';
 import UseTransition from './UseTransitionComponent';
 import DerivedState from './DerivedStateComponent';
+import LiftingStateParent from './LiftingStateParentComponent';
 
 function App() {
   return (
@@ -126,6 +127,9 @@ function App() {
       <hr />
       <h2>Derived State in React JS</h2>
       <DerivedState />
+      <hr />
+      <h2>Lifting State Up in React JS</h2>
+      <LiftingStateParent />
     </>
   )
 }

@@ -2503,3 +2503,102 @@
 
         export default DerivedState;
         ```
+
+
+## 39) Lifting State Up in React JS
+- `Lifting state up` in React is the process of moving shared data from child components to their closest common parent.
+- We use this pattern when two or more sibling components need to stay synchronized or reflect the same changing data.
+- By keeping state in the parent, we create a single source of truth and ensure data consistency across our UI.
+- According to the official React Documentation, lifting state up follows a standard workflow:
+    - `Identify the shared state`: Figure out which components need access to the same shifting data.
+    - `Move state to the parent`: Remove the useState hook from the individual children and declare it in their nearest common ancestor.
+    - `Pass data down`: Pass the state variable down from the parent to the child components as read-only properties (props).
+    - `Pass handler callbacks down`: Pass setter functions or customized event handlers down to children so they can request state modifications.
+- Example:
+    -   ```jsx
+        // In LiftingStateParentComponent.jsx
+        import { useState } from "react";
+        import { Button } from "react-bootstrap";
+        import LiftingStateChild1 from "./LiftingStateChild1Component";
+        import LiftingStateChild2 from "./LiftingStateChild2Component";
+
+        function LiftingStateParent() {
+            const [user, setUser] = useState('');
+            const [users, setUsers] = useState([]);
+
+            const saveUserHandler = () => {
+                setUsers([...users, user]);
+            }
+
+            return (
+                <div>
+                    <div className="row">
+                        <div className="col-md-6">
+                            <LiftingStateChild1 setUser={ setUser } saveUserHandler={ saveUserHandler } />
+                        </div>
+                        <div className="col-md-6">
+                            <LiftingStateChild2 users={ users } />
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        export default LiftingStateParent;
+        ```
+    -   ```jsx
+        // In LiftingStateChild1Component.jsx
+        import { Button } from "react-bootstrap";
+
+        function LiftingStateChild1({ setUser, saveUserHandler }) {
+            return (
+                <div>
+                    <table className="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th colSpan={2}>Add User Form (Child Component 1)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input className="form-control" type="text" onChange={ (event) => setUser(event.target.value) } />
+                                </td>
+                                <td>
+                                    <Button variant="primary" onClick={ saveUserHandler }>Add User</Button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default LiftingStateChild1;
+        ```
+    -   ```jsx
+        // In LiftingStateChild2Component.jsx
+        function LiftingStateChild2({ users }) {
+            const unique_users_list = [...new Set(users)];
+            return (
+                <div>
+                    <table className="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Unique User List  (Child Component 2)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    { unique_users_list.join(", ") }
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default LiftingStateChild2;
+        ```
