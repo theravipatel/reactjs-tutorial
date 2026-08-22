@@ -29,6 +29,7 @@ import UseTransition from './UseTransitionComponent';
 import DerivedState from './DerivedStateComponent';
 import LiftingStateParent from './LiftingStateParentComponent';
 import UpdateObject from './UpdateObjectComponent';
+import UpdateArray from './UpdateArrayComponent';
 
 function App() {
   return (
@@ -134,6 +135,9 @@ function App() {
       <hr />
       <h2>Updating Objects in State</h2>
       <UpdateObject />
+      <hr />
+      <h2>Updating Array in State</h2>
+      <UpdateArray />
     </>
   )
 }
