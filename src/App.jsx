@@ -30,6 +30,7 @@ import DerivedState from './DerivedStateComponent';
 import LiftingStateParent from './LiftingStateParentComponent';
 import UpdateObject from './UpdateObjectComponent';
 import UpdateArray from './UpdateArrayComponent';
+import UseActionStateHook from './UseActionStateHookComponent';
 
 function App() {
   return (
@@ -138,6 +139,9 @@ function App() {
       <hr />
       <h2>Updating Array in State</h2>
       <UpdateArray />
+      <hr />
+      <h2>useActionState Hook in React JS</h2>
+      <UseActionStateHook />
     </>
   )
 }

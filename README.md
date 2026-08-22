@@ -2830,3 +2830,85 @@
 
         export default UpdateArray;
         ```
+
+
+## 42) useActionState Hook in React JS
+- `useActionState` is a built-in `React 19` Hook that updates component state based on the result of a form action.
+- It dramatically reduces boilerplate code by automatically tracking loading states, managing errors, and linking user interactions directly to state updates.
+- It was previously named useFormState in experimental React Canary versions.
+- Syntax:
+    - `const [state, formAction, isPending] = useActionState(actionFn, initialState, permalink?);`
+- Parameters
+    - `actionFn`: The function triggered when the form submits. It receives the previous state and the form data as arguments.
+    - `initialState`: The starting value for the state before any user actions are triggered.
+    - `permalink` (Optional): A URL string containing the unique page URL for apps utilizing Server Components.
+- Returns
+    - `state`: The current state, which initially matches initialState and changes based on the return value of actionFn.
+    - `formAction`: A dispatch function you pass directly to the `<form>` element's action attribute.
+    - `isPending`: A boolean flag that stays true while the asynchronous action processes.
+- Example:
+    -   ```jsx
+        // In UseActionStateHookComponent.jsx
+        import { useActionState } from "react";
+        import { Alert, Button } from "react-bootstrap";
+
+        function UseActionStateHook() {
+            let response = {success: false, error: false, message: ""};
+
+            // Define the action function
+            const submitFormFn = async (previousState, formData) => {
+                const useremail = formData.get("useremail");
+
+                // Simulate API call
+                await new Promise((resolve) => setTimeout(resolve, 3000));
+
+                if (!useremail || !useremail.includes("@")) {
+                    response.error = true;
+                    response.message = "Invalid email address.";
+                } else {
+                    response.success = true;
+                    response.message = "Successfully registered!";
+                }
+                return response;
+            }
+
+            // Tie the action function to state management
+            const [state, submitFormAction, isPending] = useActionState(submitFormFn, response);
+
+            return (
+                <div>
+                    {
+                        state.message && (
+                            <Alert variant={(state.success === true) ? "success" : "danger" }>
+                                { state.message }
+                            </Alert>
+                        )
+                    }
+                    <form action={submitFormAction} className="mt-2">
+                        <table className="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th colSpan={3}>User Form</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Enter User Email:</td>
+                                    <td>
+                                        <input type="text" className="form-control" name="useremail" id="useremail" />
+                                    </td>
+                                    <td>
+                                        <Button type="submit" variant="primary" disabled={isPending}>
+                                            {isPending ? "Submitting..." : "Submit"}
+                                        </Button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            );
+        }
+
+        export default UseActionStateHook;
+        ```
