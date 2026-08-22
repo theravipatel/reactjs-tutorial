@@ -2421,3 +2421,85 @@
          * Tea cup for guest #1
          */
         ```
+
+
+## 38) Derived State in React JS
+- `Derived State` is any value that can be calculated from existing props or state, rather than needing to be stored in its own `useState`.
+- The core React principle is that if we can calculate it during render, do not store it in state.
+- If we us `useState` alongside `useEffect` to sync a dependent value whenever the base data changes then it will triggers two renders every time the inputs change: one for the initial state change, and a second one when the useEffect updates the secondary state.
+    - The Wrong Way / Anti-Pattern Example:
+        -   ```jsx
+            import { useState, useEffect } from 'react';
+
+            function NameForm() {
+                const [firstName, setFirstName] = useState('');
+                const [lastName, setLastName] = useState('');
+                // Redundant state
+                const [fullName, setFullName] = useState(''); 
+
+                useEffect(() => {
+                    setFullName(`${firstName} ${lastName}`);
+                }, [firstName, lastName]); // Triggers an unnecessary second render
+            }
+            ```
+- So to avoid it we should use the existing props or state variable, because React re-runs the component function on every render, the variable is calculated instantly using the latest data with zero extra overhead.
+    - The Right Way / Derived State Example:
+        -   ```jsx
+            import { useState } from 'react';
+
+            function NameForm() {
+                const [firstName, setFirstName] = useState('');
+                const [lastName, setLastName] = useState('');
+
+                // Derived state: Calculated automatically on every render
+                const fullName = `${firstName} ${lastName}`; 
+            }
+            ```
+- Example:
+    -   ```jsx
+        // In DerivedStateComponent.jsx
+        import { useState } from "react";
+        import { Button } from "react-bootstrap";
+
+        function DerivedState() {
+            const [user, setUser] = useState('');
+            const [users, setUsers] = useState([]);
+
+            const saveUserHandler = () => {
+                setUsers([...users, user]);
+            }
+
+            const total_users = users.length;
+            const last_user_added = users[users.length-1];
+            const unique_users_list = [...new Set(users)];
+            const total_unique_users = unique_users_list.length;
+
+            return (
+                <div>
+                    <table className="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input className="form-control" type="text" onChange={ (event) => setUser(event.target.value) } />
+                                </td>
+                                <td>
+                                    <Button variant="primary" onClick={ saveUserHandler }>Add User</Button>
+                                </td>
+                                <td colSpan={2}>
+                                    :)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Total Users: <b>{ total_users }</b></td>
+                                <td>Last User Added: <b>{ last_user_added }</b></td>
+                                <td>Unique Users List: <b>{ unique_users_list.join(", ") }</b></td>
+                                <td>Total Unique Users: <b>{ total_unique_users }</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default DerivedState;
+        ```

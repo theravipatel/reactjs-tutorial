@@ -26,6 +26,7 @@ import PassFunctionParent from './PassFunctionParentComponent';
 import PassRefParent from './PassRefParentComponent';
 import UseFormStatusParent from './UseFormStatusParentComponent';
 import UseTransition from './UseTransitionComponent';
+import DerivedState from './DerivedStateComponent';
 
 function App() {
   return (
@@ -122,6 +123,9 @@ function App() {
       <hr />
       <h2>useTransition Hook in React JS</h2>
       <UseTransition />
+      <hr />
+      <h2>Derived State in React JS</h2>
+      <DerivedState />
     </>
   )
 }
