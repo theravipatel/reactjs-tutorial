@@ -3077,3 +3077,43 @@
 
         export default FragmentComponent;
         ```
+
+
+## 45) Rules for React JS Hooks
+- There are two primary Rules of Hooks enforced by React to guarantee that state logic behaves predictably across component renders:
+    - Only call Hooks at the top level:
+        - We must always call Hooks at the very beginning of your React function, before any early returns or conditional paths.
+        - Do not use Hooks inside `if` statements or conditions.
+        - Do not use Hooks inside `for`, `while`, or `map` loops.
+        - Do not use Hooks inside `nested functions` or `callback functions`.
+        - Do not use Hooks inside `try/catch/finally` blocks.
+        -   ```jsx
+            export default function App() {
+                const [user, setUser] = useState(); // the correct way
+
+                if (condition) {
+                    const [data, setData] = useState(); // not the correct way
+                }
+
+                return (
+                    <div>
+                        <h1>Hello</h1>
+                    </div>
+                )
+            }
+            ```
+    - Only call Hooks from React functions:
+        - Hooks are specialized tools tied closely to the React component lifecycle. We cannot use them anywhere else.
+        - Do call them inside React functional components.
+        - Do call them inside your own custom Hooks.
+        - Do not call them inside standard, regular JavaScript helper functions.
+        - Do not call them inside event handlers like `onClick` or `onSubmit`.
+        - Do not call them inside functions passed to `useMemo`, `useReducer`, or `useEffect`.
+        - Do not call them inside legacy React class components.
+- Additional Conventions & Tooling:
+    - `The Naming Convention`:
+        - Custom Hooks must start with the lowercase word "use" followed by a capital letter (e.g., useFetch, useAuth).
+        - This signals to developers and developer tools that the function contains Hook logic.
+    - `Automated Enforcement`:
+        - Always configure the official `eslint-plugin-react-hooks` package in our development environment.
+        - This tool automatically analyzes our codebase to catch rule violations and outputs syntax warnings before our code is built.
