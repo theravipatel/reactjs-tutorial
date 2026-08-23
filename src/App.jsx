@@ -34,6 +34,7 @@ import UseActionStateHook from './UseActionStateHookComponent';
 import UseIdHook from './UseIdHookComponent';
 import FragmentComponent from './FragmentComponent';
 import ContextApiParent from './ContextApiParentComponent';
+import CustomHook from './CustomHookComponent';
 
 function App() {
   return (
@@ -154,6 +155,9 @@ function App() {
       <hr />
       <h2>Context API in React JS 19</h2>
       <ContextApiParent />
+      <hr />
+      <h2>Custom Hooks in React JS</h2>
+      <CustomHook />
     </>
   )
 }

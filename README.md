@@ -3205,3 +3205,75 @@
 
         export default ContextApiChild;
         ```
+
+
+## 47) Custom Hooks in React JS
+- `Custom Hooks` in React are regular JavaScript functions that extract and reuse stateful logic across multiple components.
+- They act as a bridge to share internal React hook logic—like state management or lifecycle methods—without duplicating our code or creating complex component structures.
+- To ensure React compiles and handles our hooks correctly, we must follow two strict design constraints:
+    - `The "use" Naming Prefix`:
+        - The function name must always begin with the lowercase word `use`, followed by a capital letter (e.g., useFetch, useAuth).
+        - React relies on this naming convention to automatically check for rule violations.
+    - `Top-Level Invocation Only`:
+        - Custom hooks can only call other React hooks at the absolute top-level of their scope.
+        - We cannot call them inside conditional loops, nested blocks, or event functions.
+- Example:
+    -   ```jsx
+        // In hooks/useToggle.jsx
+        import { useState } from "react";
+
+        function useToggle(initialValue = false) {
+            const [value, setValue] = useState(initialValue);
+
+            function toggleValue(newVal) {
+                if (typeof newVal !== "boolean") {
+                    // If we are not passing the value when we use this custom hook then toggle the initial value
+                    setValue(!value);
+                } else {
+                    // If we are passing the value when we use this custom hook then set passed value
+                    setValue(newVal);
+                }
+            }
+
+            return [value, toggleValue];
+        }
+
+        export default useToggle;
+        ```
+    -   ```jsx
+        // In CustomHookComponent.jsx
+        import { Button } from "react-bootstrap";
+        import useToggle from "./hooks/useToggle";
+
+        function CustomHook() {
+            const [toggleVal, toggleDivFn] = useToggle(true);
+            return (
+                <div>
+                    <table className="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td colSpan={3} align="center">
+                                    {
+                                        toggleVal && <h3>Hello Custom Hook!</h3>
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <Button type="button" onClick={ toggleDivFn } variant={ toggleVal === true ? "danger" : "success" }>Toggle Div</Button>
+                                </td>
+                                <td>
+                                    <Button type="button" onClick={ () => toggleDivFn(true) }>Show Div</Button>
+                                </td>
+                                <td>
+                                    <Button type="button" onClick={ () => toggleDivFn(false) }>Hide Div</Button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default CustomHook;
+        ```
