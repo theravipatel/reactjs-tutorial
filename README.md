@@ -3117,3 +3117,91 @@
     - `Automated Enforcement`:
         - Always configure the official `eslint-plugin-react-hooks` package in our development environment.
         - This tool automatically analyzes our codebase to catch rule violations and outputs syntax warnings before our code is built.
+
+
+## 46) Context API in React JS 19
+- In React 19, the Context API receives a significant modernization that eliminates traditional boilerplate and relaxes old structural rules.
+- Context allows us to store data in a shared place and access it directly from any component inside that Context.
+- Context is useful when multiple components need access to the same data.
+- Without Context, we may need to pass the data through every component like `App → Dashboard → Profile → UserInfo`.
+- To use contex, there are mainly three steps:
+    - Step 1: Create Context
+        -   ```jsx
+            const ThemeContext = createContext();
+            ```
+    - Step 2: Provide Context
+        -   ```jsx
+            <ThemeContext value={data}>
+                <MyComponents />
+            </ThemeContext>
+            ```
+    - Step 3: Use Context
+        -   ```jsx
+            const data = useContext(ThemeContext);
+            ```
+- Example:
+    -   ```jsx
+        // In MyContext.jsx (Create the Context)
+        import { createContext } from "react";
+
+        const MyContext = createContext();
+
+        export default MyContext;
+        ```
+    -   ```jsx
+        // In ContextApiParentComponent.jsx (Provide Data Using Context)
+        import { useState } from "react";
+        import ContextApiChild from "./ContextApiChildComponent";
+        import MyContext from "./MyContext";
+
+        function ContextApiParent() {
+            const [subject, setSubject] = useState();
+            const subjectLabel = "Selected Subject: ";
+            return (
+                <div>
+                    <table className="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>Parent Component</td>
+                                <td>Child Component</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <select className="form-control" name="subject" id="subject" onChange={ (event) => setSubject(event.target.value) }>
+                                        <option value="">--Please Select Subject--</option>
+                                        <option value="Hindi">Hindi</option>
+                                        <option value="Sanskrit">Sanskrit</option>
+                                        <option value="Gujarati">Gujarati</option>
+                                        <option value="Maths">Maths</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <MyContext value={{ subject, subjectLabel }}>
+                                        <ContextApiChild />
+                                    </MyContext>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default ContextApiParent;
+        ```
+    -   ```jsx
+        // In ContextApiChildComponent.jsx (Use the Context)
+        import { useContext } from "react";
+        import MyContext from "./MyContext";
+
+        function ContextApiChild() {
+            const { subject, subjectLabel } = useContext(MyContext);
+            return (
+                <div>
+                    <b>{ subjectLabel }</b>: { subject }
+                </div>
+            );
+        }
+
+        export default ContextApiChild;
+        ```

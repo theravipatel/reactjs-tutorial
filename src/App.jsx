@@ -33,6 +33,7 @@ import UpdateArray from './UpdateArrayComponent';
 import UseActionStateHook from './UseActionStateHookComponent';
 import UseIdHook from './UseIdHookComponent';
 import FragmentComponent from './FragmentComponent';
+import ContextApiParent from './ContextApiParentComponent';
 
 function App() {
   return (
@@ -150,6 +151,9 @@ function App() {
       <hr />
       <h2>Fragment in React JS</h2>
       <FragmentComponent />
+      <hr />
+      <h2>Context API in React JS 19</h2>
+      <ContextApiParent />
     </>
   )
 }
