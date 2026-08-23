@@ -32,6 +32,7 @@ import UpdateObject from './UpdateObjectComponent';
 import UpdateArray from './UpdateArrayComponent';
 import UseActionStateHook from './UseActionStateHookComponent';
 import UseIdHook from './UseIdHookComponent';
+import FragmentComponent from './FragmentComponent';
 
 function App() {
   return (
@@ -146,6 +147,9 @@ function App() {
       <hr />
       <h2>useId Hook in React JS</h2>
       <UseIdHook />
+      <hr />
+      <h2>Fragment in React JS</h2>
+      <FragmentComponent />
     </>
   )
 }
