@@ -37,6 +37,7 @@ import ContextApiParent from './ContextApiParentComponent';
 import CustomHook from './CustomHookComponent';
 import ReactRouter from './ReactRouterComponent';
 import { BrowserRouter } from 'react-router';
+import RedirectionAnd404Route from './RedirectionAnd404RouteComponent';
 
 function App() {
   return (
@@ -163,6 +164,9 @@ function App() {
       <hr />
       <h2>React Router</h2>
       <ReactRouter />
+      <hr />
+      <h2>404 Page and Redirection in React Route</h2>
+      <RedirectionAnd404Route />
     </BrowserRouter>
   )
 }

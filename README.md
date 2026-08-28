@@ -3323,3 +3323,87 @@
 
         export default ReactRouter;
         ```
+
+
+## 49) 404 Page and Redirection in React Route
+- We can set up a 404 page and handle redirections in React Router by using a catch-all asterisk path `*` and `<Navigate>` component.
+- To handle the page not found,
+    - Place a route with `path="*"` at the very bottom of your `<Routes>` list.
+    - It matches any URL that fails to trigger previous route definitions.
+    - Example:
+        -   ```jsx
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                
+                {/* Catch-all route for 404 Not Found */}
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+            ```
+- To handle the redirect,
+    - To send users from an old URL to a new one:
+        - `<Route  path='/old-path' element={<Navigate to="/new-path" />} />`
+    - To send users from unknown route to a specific route:
+        - `<Route  path='/*' element={<Navigate to="/home" />} />`
+- Example:
+    -   ```jsx
+        // In RedirectionAnd404RouteComponent.jsx
+        import { Link, Navigate, Route, Routes } from "react-router";
+
+        function RedirectionAnd404Route() {
+            return (
+                <div>
+                    <nav>
+                        <Link to={"/"}>Home</Link>
+                        { " | " }
+                        <Link to={"/about"}>About</Link>
+                        { " | " }
+                        <Link to={"/new-path"}>New Page</Link>
+                        { " | " }
+                        <Link to={"/unknown"}>Unknown Page</Link>
+                    </nav>
+                    <Routes>
+                        <Route path="/" element={ <HomePageComponent /> }></Route>
+                        <Route path="/about" element={ <AboutPageComponent /> }></Route>
+                        <Route path="/new-path" element={ <NewPageComponent /> }></Route>
+                        <Route path="/old-path" element={ <Navigate to="/new-path" /> }></Route>
+                        <Route path="/*" element={ <PageNotFoundComponent /> }></Route>
+                    </Routes>
+                </div>
+            );
+        }
+
+        function HomePageComponent() {
+            return (
+                <div>
+                    Home Page
+                </div>
+            );
+        }
+
+        function AboutPageComponent() {
+            return (
+                <div>
+                    About Page
+                </div>
+            );
+        }
+
+        function NewPageComponent() {
+            return (
+                <div>
+                    New Page
+                </div>
+            );
+        }
+
+        function PageNotFoundComponent() {
+            return (
+                <div>
+                    Page Not Found Page
+                </div>
+            );
+        }
+
+        export default RedirectionAnd404Route;
+        ```
