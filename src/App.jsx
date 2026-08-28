@@ -38,6 +38,7 @@ import CustomHook from './CustomHookComponent';
 import ReactRouter from './ReactRouterComponent';
 import { BrowserRouter } from 'react-router';
 import RedirectionAnd404Route from './RedirectionAnd404RouteComponent';
+import NestedRouting from './NestedRoutingComponent';
 
 function App() {
   return (
@@ -167,6 +168,9 @@ function App() {
       <hr />
       <h2>404 Page and Redirection in React Route</h2>
       <RedirectionAnd404Route />
+      <hr />
+      <h2>Nested Routing in React Router</h2>
+      <NestedRouting />
     </BrowserRouter>
   )
 }

@@ -3407,3 +3407,83 @@
 
         export default RedirectionAnd404Route;
         ```
+
+
+## 50) Nested Routing in React Router
+- `Nested Routing` allows us to build multi-level layouts where child routes render inside a parent component.
+- Key Core Concepts:
+    - `Parent Route`: Defines the layout wrapper and the shared path prefix.
+    - `<Outlet />`: A placeholder component imported from react-router. It must be placed inside the parent component to designate exactly where child components should render.
+    - `Index Route`: A special child route without a path that renders by default when the user hits exactly the parent's URL.
+- Exampple:
+    -   ```jsx
+        // In NestedRoutingComponent.jsx
+        import { Link, Outlet, Route, Routes } from "react-router";
+
+        function NestedRouting() {
+            return (
+                <div>
+                    <ul>
+                        <li>
+                            <Link to={"/main-page"}>Main Page</Link>
+                            <ul>
+                                <li>
+                                    <Link to="/main-page/sub-page-1">Sub Page 1</Link>
+                                </li>
+                                <li>
+                                    <Link to="/main-page/sub-page-2">Sub Page 2</Link>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <Routes>
+                        {/* Parent Route */}
+                        <Route path="main-page" element={ <PageLayoutComponent /> }>
+                            {/* Index Route renders at "/main-page" */}
+                            <Route index element={ <MainPageComponent /> } ></Route>
+                            {/* Nested Route */}
+                            <Route path="sub-page-1" element={ <SubPage1Component /> }></Route>
+                            <Route path="sub-page-2" element={ <SubPage2Component /> }></Route>
+                        </Route>
+                        <Route path="*" element={ null }></Route>
+                    </Routes>
+                </div>
+            );
+        }
+
+        function PageLayoutComponent() {
+            return (
+                <div>
+                    Parent Layout
+                    {/* The child routes will inject their components right here */}
+                    <Outlet />
+                </div>
+            );
+        }
+
+        function MainPageComponent() {
+            return (
+                <div>
+                    Main Page
+                </div>
+            );
+        }
+
+        function SubPage1Component() {
+            return (
+                <div>
+                    Sub Page 1
+                </div>
+            );
+        }
+
+        function SubPage2Component() {
+            return (
+                <div>
+                Sub Page 2
+                </div>
+            );
+        }
+
+        export default NestedRouting;
+        ```

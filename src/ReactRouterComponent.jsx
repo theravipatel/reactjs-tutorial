@@ -11,6 +11,7 @@ function ReactRouter() {
             <Routes>
                 <Route path="/" element={ <HomePageComponent /> }></Route>
                 <Route path="/about" element={ <AboutPageComponent /> }></Route>
+                <Route path="*" element={ null }></Route>
             </Routes>
         </div>
     );
