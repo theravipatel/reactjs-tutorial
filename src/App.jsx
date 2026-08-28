@@ -39,6 +39,7 @@ import ReactRouter from './ReactRouterComponent';
 import { BrowserRouter } from 'react-router';
 import RedirectionAnd404Route from './RedirectionAnd404RouteComponent';
 import NestedRouting from './NestedRoutingComponent';
+import RoutePrefix from './RoutePrefixComponent';
 
 function App() {
   return (
@@ -171,6 +172,9 @@ function App() {
       <hr />
       <h2>Nested Routing in React Router</h2>
       <NestedRouting />
+      <hr />
+      <h2>Route Prefix in React Router</h2>
+      <RoutePrefix />
     </BrowserRouter>
   )
 }
