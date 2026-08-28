@@ -3277,3 +3277,49 @@
 
         export default CustomHook;
         ```
+
+
+## 48) React Router
+- `React Router` is the standard library for handling client-side routing in React single-page applications (SPAs).
+- It intercepts browser requests to seamlessly load specific application components without forcing a full page refresh.
+- For this we need to install `react-router` library package.
+    -   ```cmd
+        npm install react-router
+        ```
+- It contain mainly:
+    - `BrowserRouter` → This component enables client-side routing using the browser's history API.
+    - `Routes` → Contains all routes and responsible for rendering the appropriate component based on the current URL.
+    - `Route` → Defines a URL and its component
+    - `Link` → Used to navigate between pages
+- Example:
+    -   ```jsx
+        // In ReactRouterComponent.jsx
+        import { BrowserRouter, Routes, Route, Link } from "react-router";
+
+        function Home() {
+            return <h1>Home Page</h1>;
+        }
+
+        function About() {
+            return <h1>About Page</h1>;
+        }
+
+        function ReactRouter() {
+            return (
+                <BrowserRouter>
+                    <nav>
+                        <Link to="/">Home</Link>
+                        {" | "}
+                        <Link to="/about">About</Link>
+                    </nav>
+
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/about" element={<About />} />
+                    </Routes>
+                </BrowserRouter>
+            );
+        }
+
+        export default ReactRouter;
+        ```

@@ -35,10 +35,12 @@ import UseIdHook from './UseIdHookComponent';
 import FragmentComponent from './FragmentComponent';
 import ContextApiParent from './ContextApiParentComponent';
 import CustomHook from './CustomHookComponent';
+import ReactRouter from './ReactRouterComponent';
+import { BrowserRouter } from 'react-router';
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <h1>ReactJS Tutorial</h1>
       <br></br><br></br>
       <h2>Fruits:</h2>
@@ -158,7 +160,10 @@ function App() {
       <hr />
       <h2>Custom Hooks in React JS</h2>
       <CustomHook />
-    </>
+      <hr />
+      <h2>React Router</h2>
+      <ReactRouter />
+    </BrowserRouter>
   )
 }
 
