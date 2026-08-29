@@ -43,6 +43,7 @@ import RoutePrefix from './RoutePrefixComponent';
 import DynamicRoutes from './DynamicRoutesComponent';
 import OptionalSegment from './OptionalSegmentComponent';
 import NavLinkActiveClass from './NavLinkActiveClassComponent';
+import TailwindCss from './TailwindCssComponent';
 
 function App() {
   return (
@@ -187,6 +188,9 @@ function App() {
       <hr />
       <h2>NavLink and Active Class in React Router</h2>
       <NavLinkActiveClass />
+      <hr />
+      <h2>Install Tailwind CSS in React</h2>
+      <TailwindCss />
     </BrowserRouter>
   )
 }

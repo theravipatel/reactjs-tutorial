@@ -3887,3 +3887,39 @@
 
         export default NavLinkActiveClass;
         ```
+
+
+## 56) Installation and Use of Tailwind CSS in React
+- To install `Tailwind CSS v4` in a React.js project built with Vite, follow the streamlined step-by-step guide from the official site i.e. (As of today - https://tailwindcss.com/docs/installation/using-vite). Vite is the modern, industry-standard tool for creating React applications.
+- 1) Install `tailwindcss` and `@tailwindcss/vite` via npm:
+    - `npm install tailwindcss @tailwindcss/vite`
+- 2) Add the `@tailwindcss/vite` plugin to your Vite configuration:
+    -   ```jsx
+        import tailwindcss from '@tailwindcss/vite'
+
+        export default defineConfig({
+            plugins: [
+                tailwindcss(),
+            ],
+        })
+        ```
+- 3) Add an `@import` to our CSS file that imports Tailwind CSS.
+    - `@import "tailwindcss";`
+- 4) Run your build process with npm run dev or whatever command is configured in your package.json file.
+- 5) Start using Tailwind in your HTML.
+    - `<h1 class="text-3xl font-bold underline"> Hello world! </h1>`
+- Example:
+    -   ```jsx
+        // In TailwindCssComponent.jsx
+        function TailwindCss() {
+            return (
+                <div>
+                    <h1 class="text-3xl font-bold underline bg-orange-500 border-yellow-500 border-5">
+                        Hello Tailwind!
+                    </h1>
+                </div>
+            );
+        }
+
+        export default TailwindCss;
+        ```
