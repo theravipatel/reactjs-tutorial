@@ -42,6 +42,7 @@ import NestedRouting from './NestedRoutingComponent';
 import RoutePrefix from './RoutePrefixComponent';
 import DynamicRoutes from './DynamicRoutesComponent';
 import OptionalSegment from './OptionalSegmentComponent';
+import NavLinkActiveClass from './NavLinkActiveClassComponent';
 
 function App() {
   return (
@@ -183,6 +184,9 @@ function App() {
       <hr />
       <h2>Segment and Optional Segment in React Router</h2>
       <OptionalSegment />
+      <hr />
+      <h2>NavLink and Active Class in React Router</h2>
+      <NavLinkActiveClass />
     </BrowserRouter>
   )
 }

@@ -3814,3 +3814,76 @@
 
         export default OptionalSegment;
         ```
+
+
+## 55) NavLink and Active Class in React Router
+- `<NavLink>` component is specifically designed to handle navigation items that need an `active` state (like navigation bars).
+- It automatically detects when its to path matches the current URL route and applies styling states natively.
+- By default, whenever a `<NavLink>` is active, React Router automatically appends the active class name to the underlying HTML `<a>` tag.
+- If we are using Tailwind CSS or need to conditionally apply custom class names, we must pass a callback function to the `className` prop.
+- React Router exposes a `NavLinkRenderProps` object containing boolean states (`isActive`, `isPending`, and `isTransitioning`).
+    -   ```jsx
+        <NavLink
+            to="/profile"
+            className={({ isActive }) => isActive ? "font-bold" : "" }
+        >
+            Profile
+        </NavLink>
+        ```
+- Similarly, if we prefer inline styles instead of CSS classes, the style prop also accepts a function that receives the same `isActive` state.
+    -   ```jsx
+        <NavLink
+            to="/settings"
+            style={({ isActive }) => ({
+                color: isActive ? "blue" : "black",
+                textDecoration: isActive ? "underline" : "none",
+            })}
+        >
+            Settings
+        </NavLink>
+        ```
+- Example:
+    -   ```jsx
+        // In NavLinkActiveClassComponent.jsx
+        import { NavLink, Route, Routes } from "react-router";
+
+        function NavLinkActiveClass() {
+            return (
+                <div>
+                    <nav>
+                        <NavLink to={"/"}>Home</NavLink>
+                        { " | " }
+                        <NavLink
+                            to={"/login"}
+                            className={({ isActive }) => isActive ? 'custom-active fw-bold' : ''}
+                        >
+                            Login
+                        </NavLink>
+                    </nav>
+                    <Routes>
+                        <Route path="/" element={ <HomePageComponent /> }></Route>
+                        <Route path="/login" element={ <LoginPageComponent /> }></Route>
+                        <Route path="*" element={ null }></Route>
+                    </Routes>
+                </div>
+            );
+        }
+
+        function HomePageComponent() {
+            return (
+                <div>
+                    Home Page
+                </div>
+            );
+        }
+
+        function LoginPageComponent() {
+            return (
+                <div>
+                    Login Page
+                </div>
+            );
+        }
+
+        export default NavLinkActiveClass;
+        ```
