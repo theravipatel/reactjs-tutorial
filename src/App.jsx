@@ -41,6 +41,7 @@ import RedirectionAnd404Route from './RedirectionAnd404RouteComponent';
 import NestedRouting from './NestedRoutingComponent';
 import RoutePrefix from './RoutePrefixComponent';
 import DynamicRoutes from './DynamicRoutesComponent';
+import OptionalSegment from './OptionalSegmentComponent';
 
 function App() {
   return (
@@ -179,6 +180,9 @@ function App() {
       <hr />
       <h2>Dynamic Routes in React Router</h2>
       <DynamicRoutes />
+      <hr />
+      <h2>Segment and Optional Segment in React Router</h2>
+      <OptionalSegment />
     </BrowserRouter>
   )
 }
