@@ -40,6 +40,7 @@ import { BrowserRouter } from 'react-router';
 import RedirectionAnd404Route from './RedirectionAnd404RouteComponent';
 import NestedRouting from './NestedRoutingComponent';
 import RoutePrefix from './RoutePrefixComponent';
+import DynamicRoutes from './DynamicRoutesComponent';
 
 function App() {
   return (
@@ -175,6 +176,9 @@ function App() {
       <hr />
       <h2>Route Prefix in React Router</h2>
       <RoutePrefix />
+      <hr />
+      <h2>Dynamic Routes in React Router</h2>
+      <DynamicRoutes />
     </BrowserRouter>
   )
 }

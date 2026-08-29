@@ -3640,3 +3640,90 @@
 
         export default RoutePrefix;
         ```
+
+
+## 53) Dynamic Routes in React Router
+- `Dynamic routes` in React Router allow you to handle URLs that contain variable data, such as a user ID or a blog post slug, using a single route definition.
+- Instead of hardcoding a separate route for every piece of content, we use placeholders called dynamic segments.
+- To mark a path segment as dynamic, prefix it with a colon (`:`) when configuring our routes.
+- The string following the colon acts as the `param name`.
+- Syntax:
+    -   ```jsx
+        <Route path="/products/:productId" element={<ProductDetails />} />
+        ```
+    -   ```jsx
+        const router = createBrowserRouter([
+            {
+                path: "/products/:productId",
+                Component: ProductDetails,
+            },
+        ]);
+        ```
+- Example:
+    -   ```jsx
+        // In
+        import { Link, Route, Routes, useParams } from "react-router";
+
+        function DynamicRoutes() {
+            return (
+                <div>
+                    <nav>
+                        <Link to={"/"}>Home</Link>
+                        { " | " }
+                        <Link to={"/users"}>Users</Link>
+                    </nav>
+                    <Routes>
+                        <Route path="/" element={ <HomePageComponent /> }></Route>
+                        <Route path="/users" element={ <UsersListPageComponent /> }></Route>
+                        <Route path="/users/:id" element={ <UserDetailPageComponent /> }></Route>
+                        <Route path="*" element={ null }></Route>
+                    </Routes>
+                </div>
+            );
+        }
+
+        function HomePageComponent() {
+            return (
+                <div>
+                    Home Page
+                </div>
+            );
+        }
+
+        function UsersListPageComponent() {
+            const usersData = [
+                {id: 1, name: "User 1"},
+                {id: 2, name: "User 2"},
+                {id: 3, name: "User 3"},
+            ];
+            return (
+                <div>
+                    Users List Page
+                    <br />
+                    <ul>
+                        {
+                            usersData.map((user, index)=>(
+                                <li key={index}><Link to={ `/users/${user.id}` }>{ user.name }</Link></li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            );
+        }
+
+        function UserDetailPageComponent() {
+            const parameterData = useParams();
+            const userId = parameterData.id;
+            return (
+                <div>
+                    <h5>User Detail Page</h5>
+                    <br />
+                    <h6>The selected user id is { userId }</h6>
+                    <br />
+                    <Link to={'/users'}>Go Back to Users List Page</Link>
+                </div>
+            );
+        }
+
+        export default DynamicRoutes;
+        ```
