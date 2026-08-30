@@ -45,6 +45,7 @@ import OptionalSegment from './OptionalSegmentComponent';
 import NavLinkActiveClass from './NavLinkActiveClassComponent';
 import TailwindCss from './TailwindCssComponent';
 import GetApi from './GetApiComponent';
+import PostApi from './PostApiComponent';
 
 function App() {
   return (
@@ -195,6 +196,9 @@ function App() {
       <hr />
       <h2>GET API in React JS</h2>
       <GetApi />
+      <hr />
+      <h2>POST API in React JS</h2>
+      <PostApi />
     </BrowserRouter>
   )
 }

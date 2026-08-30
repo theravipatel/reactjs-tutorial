@@ -1,22 +1,90 @@
 {
-  "$schema": "../node_modules/json-server/schema.json",
   "posts": [
-    { "id": "1", "title": "Title 1", "views": 100 },
-    { "id": "2", "title": "Title 2", "views": 200 },
-    { "id": "3", "title": "Title 3", "views": 50 },
-    { "id": "4", "title": "Title 4", "views": 600 },
-    { "id": "5", "title": "Title 5", "views": 300 },
-    { "id": "6", "title": "Title 6", "views": 20 }
+    {
+      "id": "1",
+      "title": "Title 1",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "Title 2",
+      "views": 200
+    },
+    {
+      "id": "3",
+      "title": "Title 3",
+      "views": 50
+    },
+    {
+      "id": "4",
+      "title": "Title 4",
+      "views": 600
+    },
+    {
+      "id": "5",
+      "title": "Title 5",
+      "views": 300
+    },
+    {
+      "id": "6",
+      "title": "Title 6",
+      "views": 20
+    },
+    {
+      "title": "Test 7",
+      "views": 10,
+      "id": "Y6iOnvsBTGE"
+    },
+    {
+      "title": "Test 7",
+      "id": "O72ALmvMxqU"
+    },
+    {
+      "id": "rZASYrWY3w8"
+    },
+    {
+      "title": "t1",
+      "id": "NZ7NJLzQPfc"
+    },
+    {
+      "title": "t2",
+      "id": "q-bjn-mz9T0"
+    },
+    {
+      "title": "t3",
+      "id": "2LcsRZmFyTQ"
+    },
+    {
+      "title": "t4",
+      "id": "HFbtpEzdrOc"
+    }
   ],
   "comments": [
-    { "id": "1", "text": "Comment 1 on post 1", "postId": "1" },
-    { "id": "2", "text": "Comment 2 on post 1", "postId": "1" },
-    { "id": "3", "text": "Comment 3 on post 1", "postId": "1" },
-    { "id": "4", "text": "Comment 4 on post 1", "postId": "1" }
+    {
+      "id": "1",
+      "text": "Comment 1 on post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "Comment 2 on post 1",
+      "postId": "1"
+    },
+    {
+      "id": "3",
+      "text": "Comment 3 on post 1",
+      "postId": "1"
+    },
+    {
+      "id": "4",
+      "text": "Comment 4 on post 1",
+      "postId": "1"
+    }
   ],
   "profile": {
     "name": "Ravi Patel",
     "email": "rjpatel2290@gmail.com",
     "country": "Bharat"
-  }
+  },
+  "$schema": "./node_modules/json-server/schema.json"
 }
