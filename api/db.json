@@ -1,0 +1,18 @@
+{
+  "$schema": "../node_modules/json-server/schema.json",
+  "posts": [
+    { "id": "1", "title": "Title 1", "views": 100 },
+    { "id": "2", "title": "Title 2", "views": 200 }
+  ],
+  "comments": [
+    { "id": "1", "text": "Comment 1 on post 1", "postId": "1" },
+    { "id": "2", "text": "Comment 2 on post 1", "postId": "1" },
+    { "id": "3", "text": "Comment 3 on post 1", "postId": "1" },
+    { "id": "4", "text": "Comment 4 on post 1", "postId": "1" }
+  ],
+  "profile": {
+    "name": "Ravi Patel",
+    "email": "rjpatel2290@gmail.com",
+    "country": "Bharat"
+  }
+}

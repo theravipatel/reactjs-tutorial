@@ -3923,3 +3923,39 @@
 
         export default TailwindCss;
         ```
+
+
+## 57) Setup JSON-Server for demo APIs
+- To setup a mock REST API using `json-server`, you can create a fully functional demo backend in under a minute.
+- This tool turns a local JSON file into an active server capable of handling GET, POST, PUT, PATCH, and DELETE requests automatically.
+- Here is the step-by-step setup guide:
+    - Install:
+        - Command: `npm install json-server`
+        - Ref.: https://www.npmjs.com/package/json-server
+    - Create a Demo Database File:
+        - Create a file named db.json in your root folder.
+        - This file acts as your database. Copy and paste the following sample structure into it:
+        -   ```json
+            {
+                "$schema": "../node_modules/json-server/schema.json",
+                "posts": [
+                    { "id": "1", "title": "Title 1", "views": 100 },
+                    { "id": "2", "title": "Title 2", "views": 200 }
+                ],
+                "comments": [
+                    { "id": "1", "text": "Comment 1 on post 1", "postId": "1" },
+                    { "id": "2", "text": "Comment 2 on post 1", "postId": "1" },
+                    { "id": "3", "text": "Comment 3 on post 1", "postId": "1" },
+                    { "id": "4", "text": "Comment 4 on post 1", "postId": "1" }
+                ],
+                "profile": {
+                    "name": "Ravi Patel",
+                    "email": "rjpatel2290@gmail.com",
+                    "country": "Bharat"
+                }
+            }
+            ```
+    - Start JSON Server:
+        - Command: `npx json-server db.json`
+    - Access your REST API:
+        - `curl http://localhost:3000/posts/1`
