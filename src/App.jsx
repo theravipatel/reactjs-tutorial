@@ -46,6 +46,7 @@ import NavLinkActiveClass from './NavLinkActiveClassComponent';
 import TailwindCss from './TailwindCssComponent';
 import GetApi from './GetApiComponent';
 import PostApi from './PostApiComponent';
+import DeleteApi from './DeleteApiComponent';
 
 function App() {
   return (
@@ -199,6 +200,9 @@ function App() {
       <hr />
       <h2>POST API in React JS</h2>
       <PostApi />
+      <hr />
+      <h2>DELETE API in React JS</h2>
+      <DeleteApi />
     </BrowserRouter>
   )
 }
