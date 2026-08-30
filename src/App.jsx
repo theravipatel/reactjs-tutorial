@@ -47,6 +47,7 @@ import TailwindCss from './TailwindCssComponent';
 import GetApi from './GetApiComponent';
 import PostApi from './PostApiComponent';
 import DeleteApi from './DeleteApiComponent';
+import PutApi from './PutApiComponent';
 
 function App() {
   return (
@@ -203,6 +204,9 @@ function App() {
       <hr />
       <h2>DELETE API in React JS</h2>
       <DeleteApi />
+      <hr />
+      <h2>PUT API in React JS</h2>
+      <PutApi />
     </BrowserRouter>
   )
 }

@@ -21,7 +21,7 @@ function DeleteApi() {
     }
 
     const deletePost = async (id) => {
-        let response = fetch(api_base_url + "/posts/" + id, {
+        let response = await fetch(api_base_url + "/posts/" + id, {
             method: "DELETE"
         });
         response = await response.json();
