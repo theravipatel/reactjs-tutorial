@@ -44,6 +44,7 @@ import DynamicRoutes from './DynamicRoutesComponent';
 import OptionalSegment from './OptionalSegmentComponent';
 import NavLinkActiveClass from './NavLinkActiveClassComponent';
 import TailwindCss from './TailwindCssComponent';
+import GetApi from './GetApiComponent';
 
 function App() {
   return (
@@ -191,6 +192,9 @@ function App() {
       <hr />
       <h2>Install Tailwind CSS in React</h2>
       <TailwindCss />
+      <hr />
+      <h2>GET API in React JS</h2>
+      <GetApi />
     </BrowserRouter>
   )
 }
