@@ -49,6 +49,7 @@ import PostApi from './PostApiComponent';
 import DeleteApi from './DeleteApiComponent';
 import PutApi from './PutApiComponent';
 import BasicInputValidation from './BasicInputValidationComponent';
+import ValidationWithUseAction from './ValidationWithUseActionComponent';
 
 function App() {
   return (
@@ -211,6 +212,9 @@ function App() {
       <hr />
       <h2>Basic input validation in React JS</h2>
       <BasicInputValidation />
+      <hr />
+      <h2>Validation with useActionState Hook in React JS</h2>
+      <ValidationWithUseAction />
     </BrowserRouter>
   )
 }
