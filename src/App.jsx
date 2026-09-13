@@ -51,6 +51,7 @@ import PutApi from './PutApiComponent';
 import BasicInputValidation from './BasicInputValidationComponent';
 import ValidationWithUseAction from './ValidationWithUseActionComponent';
 import UseReducerHook from './UseReducerHookComponent';
+import LazyLoadParent from './LazyLoadParentComponent';
 
 function App() {
   return (
@@ -219,6 +220,9 @@ function App() {
       <hr />
       <h2>useReducer Hook in React JS</h2>
       <UseReducerHook />
+      <hr />
+      <h2>Lazy Loading in React JS</h2>
+      <LazyLoadParent />
     </BrowserRouter>
   )
 }

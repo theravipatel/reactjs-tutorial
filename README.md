@@ -4705,3 +4705,102 @@
 
         export default UseReducerHook;
         ```
+    
+
+## 65) Lazy Loading in React JS
+- `Lazy loading` in React JS is a performance optimization technique that defers loading a component's underlying JavaScript code until it is actually rendered on screen.
+- By utilizing code splitting, bundlers (like Vite or Webpack) divide our monolithic JavaScript bundle into smaller, bite-sized chunks that are downloaded completely on demand.
+- This significantly lowers our app's initial bundle size, driving down `First Contentful Paint (FCP)` times and preventing users on slower connections from staring at blank screens.
+- React handles lazy loading natively using a core pairing: the `lazy()` function and the `<Suspense>` component.
+    - `lazy(load)`:
+        - A function that wraps a dynamic ECMAScript `import()` statement.
+        - It intercepts the render tree and instructs React to fetch the code chunk only when the component mounts.
+        - Note: The targeted component must be exported as a default export.
+    - `<Suspense>`:
+        - A wrapper component that acts as a boundary caught mid-request.
+        - It handles the pending state of the promise thrown by `lazy()` and replaces the missing component with a temporary UI (like a skeleton loader or a spinner) via its `fallback` prop.
+- To prevent breaking our user interface, we must handle failure states safely while using lazy load:
+    - `Always wrap with an Error Boundary`:
+        - A lazy-loaded chunk is a live network asset.
+        - If a user loses internet connectivity mid-session, or we deploy a fresh build that expires old chunk hashes, the asset request fails with a `ChunkLoadError`
+        -  Without an Error Boundary, our whole parent tree will crash.
+    - `Avoid splitting small files`:
+        - Creating separate chunks for components under 30 KB is counterproductive.
+        - The time spent processing a network roundtrip easily eclipses the file size savings.
+        - Target heavy elements or those containing beefy vendor dependencies (like Leaflet, Chart.js, or rich-text editors).
+    - `Never lazy load above-the-fold content`:
+        - Wrapping our main page's hero image or initial text header inside a lazy loader forces our users to watch a loading spinner on elements they expect to interact with instantaneously.
+- Example:
+    -   ```jsx
+        // In LazyLoadParentComponent.jsx
+        import { lazy, Suspense, useState } from "react";
+        import { Button } from "react-bootstrap";
+        const LazyLoadChild = lazy(() => import("./LazyLoadChildComponent"));
+
+        function LazyLoadParent() {
+            const [isLoad, SetIsLoad] = useState(false);
+            return (
+                <div>
+                    <Button
+                        type="button"
+                        className="w-full mb-2"
+                        variant="primary"
+                        onClick={() => SetIsLoad(true)}
+                    >
+                        Load Users Data
+                    </Button>
+                    
+                    {/* 2. Wrap the component in Suspense and provide a fallback UI */}
+
+                    {
+                        isLoad
+                        ?
+                        <Suspense fallback={<div>loading...</div>}>
+                            <LazyLoadChild />
+                        </Suspense>
+                        :
+                        null
+                    }
+                </div>
+            );
+        }
+
+        export default LazyLoadParent;
+        ```
+    -   ```jsx
+        // In LazyLoadChildComponent.jsx
+        function LazyLoadChild() {
+            return (
+                <div>
+                    <table className="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>User Name</th>
+                                <th>User Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>User 1</td>
+                                <td>user1@email.com</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>User 2</td>
+                                <td>user2@email.com</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>User 3</td>
+                                <td>user3@email.com</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default LazyLoadChild;
+        ```
