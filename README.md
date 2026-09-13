@@ -4574,3 +4574,134 @@
 
         export default ValidationWithUseAction;
         ```
+
+
+## 64) useReducer Hook in React JS
+- The `useReducer` Hook in React JS is a built-in tool used for managing complex state logic.
+- While `useState` is ideal for simple, independent data types (like a single string or boolean), `useReducer` is the preferred choice when our state transitions depend on previous state values, involve multiple sub-values, or require highly predictable state modifications based on distinct user actions.
+- It follows a state management architecture very similar to Redux but operates locally within a single component.
+- Syntax:
+    -   ```jsx
+        const [state, dispatch] = useReducer(reducer, initialState);
+        ```
+    - `state`: The current snapshot of the component's state.
+    - `dispatch`: A function we call to trigger a state update by passing it an "action" object.
+    - `reducer`: A custom, pure function that calculates the next state based on the current state and the incoming action.
+    - `initialState`: The starting value of your state.
+- Comparing *useState* vs. *useReducer*
+    - `Logic Location`:
+        - **useState**: Defined inline inside event handlers.
+        - **useReducer**: Centralized outside the component body.
+    - `State Structure`:
+        - **useState**: Best for primitive types or simple objects.
+        - **useReducer**: Best for complex, deeply nested objects or arrays.
+    - `Next State Generation`:
+        - **useState**: Directly assigned or computed on the fly.
+        - **useReducer**: Governed by an immutable blueprint (switch cases).
+    - `Readability / Scale`:
+        - **useState**: Code gets messy as state dependencies grow.
+        - **useReducer**: Highly structured; extremely predictable scaling.
+- Best Practices to Keep in Mind:
+    - Keep Reducers Pure:
+        - Reducer functions must never directly mutate the existing state object.
+        - Always return a brand new object using the spread operator (`...state`) if we are working with objects or arrays.
+    - Move Reducers Outside Components:
+        - Declare our reducer function and initialState outside the component file template.
+        - This ensures they are not recreated on every single re-render, optimizing performance and making our code easier to unit test.
+    - Standardize Actions:
+        - Always use the object structure `{ type: 'ACTION_NAME', payload: data }`.
+        - This conforms to community standards and makes integration with logging tools much smoother.
+- Example:
+    -   ```jsx
+        // In UseReducerHookComponent.jsx
+        // Plus-Minus Functional Counter System
+
+        import { useReducer } from "react";
+        import { Button } from "react-bootstrap";
+
+
+        // 1. Define the initial state structure
+        const initialState = { count: 0 };
+
+        // 2. Build the pure reducer function to calculate state changes
+        function reducer(state, action) {
+            switch (action.type) {
+                case 'increment':
+                    return { count: state.count + 1 };
+                case 'decrement':
+                    return { count: state.count - 1 };
+                case 'reset':
+                    return { count: 0 };
+                case 'setValue':
+                    return { count: action.payload }; // payload passes dynamic data
+                default:
+                    throw new Error(`Unhandled action type: ${action.type}`);
+            }
+        }
+
+        // 3. Implement the Hook inside the component
+        function UseReducerHook() {
+            const [state, dispatch] = useReducer(reducer, initialState);
+            return (
+                <div>
+                    <table className="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th colSpan="4">
+                                    <h4 className="text-center">
+                                        Count: { state.count }
+                                    </h4>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className="w-25">
+                                    <Button
+                                        type="button"
+                                        className="w-full"
+                                        variant="primary"
+                                        onClick={() => dispatch({ type: 'increment' })}
+                                    >
+                                        Increment ++
+                                    </Button>
+                                </td>
+                                <td className="w-25">
+                                    <Button
+                                        type="button"
+                                        className="w-full"
+                                        variant="danger"
+                                        onClick={() => dispatch({ type: 'decrement' })}
+                                    >
+                                        Decrement --
+                                    </Button>
+                                </td>
+                                <td className="w-25">
+                                    <Button
+                                        type="button"
+                                        className="w-full"
+                                        variant="info"
+                                        onClick={() => dispatch({ type: 'reset' })}
+                                    >
+                                        Reset 0
+                                    </Button>
+                                </td>
+                                <td className="w-25">
+                                    <Button
+                                        type="button"
+                                        className="w-full"
+                                        variant="warning"
+                                        onClick={() => dispatch({ type: 'setValue', payload: 100 })}
+                                    >
+                                        Set to 100
+                                    </Button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default UseReducerHook;
+        ```

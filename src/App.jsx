@@ -50,6 +50,7 @@ import DeleteApi from './DeleteApiComponent';
 import PutApi from './PutApiComponent';
 import BasicInputValidation from './BasicInputValidationComponent';
 import ValidationWithUseAction from './ValidationWithUseActionComponent';
+import UseReducerHook from './UseReducerHookComponent';
 
 function App() {
   return (
@@ -215,6 +216,9 @@ function App() {
       <hr />
       <h2>Validation with useActionState Hook in React JS</h2>
       <ValidationWithUseAction />
+      <hr />
+      <h2>useReducer Hook in React JS</h2>
+      <UseReducerHook />
     </BrowserRouter>
   )
 }
