@@ -53,6 +53,7 @@ import ValidationWithUseAction from './ValidationWithUseActionComponent';
 import UseReducerHook from './UseReducerHookComponent';
 import LazyLoadParent from './LazyLoadParentComponent';
 import UseApi from './UseApiComponent';
+import UseOptimisticHook from './UseOptimisticHookComponent';
 
 function App() {
   return (
@@ -227,6 +228,9 @@ function App() {
       <hr />
       <h2>use() API in React JS</h2>
       <UseApi />
+      <hr />
+      <h2>useOptimistic Hook in React JS</h2>
+      <UseOptimisticHook />
     </BrowserRouter>
   )
 }
