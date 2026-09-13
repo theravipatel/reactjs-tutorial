@@ -4804,3 +4804,66 @@
 
         export default LazyLoadChild;
         ```
+
+
+## 66) use() API in React JS
+- The `use()` API in React is a built-in feature introduced in React 19 that allows us to read the value of a resource like a *Promise* or a *Context* directly during rendering.
+- Unlike traditional React hooks (like `useState` or `useEffect`), `use()` is highly flexible because it can be called conditionally and inside loops.
+- Before `use()`, reading a context required `useContext()`, which could never be nested inside a conditional block. `use()` removes this limitation.
+- `use()` allows us to read the resolved value of a JavaScript Promise directly in our render logic, drastically simplifying data fetching.
+- Key Capabilities & Rules:
+    - `Flexible Placement`:
+        - While standard React hooks must only be called at the very top level of a component, `use()` can be placed inside if statements and for loops.
+    - `Component & Hook Only`:
+        - Like hooks, it must still be called inside a React functional component or a custom hook.
+    - `Suspense Integration`:
+        - When passed a Promise, `use()` automatically integrates with `<Suspense>`, pausing component rendering until the Promise resolves.
+- Example:
+    -   ```jsx
+        // In UseApiComponent.jsx
+        import { Suspense, use } from "react";
+
+        // fetchUserData return promise
+        const fetchUserData = () => fetch("https://dummyjson.com/users/?limit=5").then((res) => res.json());
+        const userRes = fetchUserData();
+
+        function UseApi() {
+            return (
+                <div>
+                    <Suspense fallback={ <div>Loading...</div> }>
+                        <User userRes={userRes} />
+                    </Suspense>
+                </div>
+            );
+        }
+
+        const User = ({userRes}) => {
+            const userData = use(userRes);
+            return (
+                <div>
+                    <table className="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>User Name</th>
+                                <th>User Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                userData?.users?.map((user, index)=>(
+                                    <tr key={index}>
+                                        <td>{ user?.id }</td>
+                                        <td>{ user?.username }</td>
+                                        <td>{ user?.email }</td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        export default UseApi;
+        ```
