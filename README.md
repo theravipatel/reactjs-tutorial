@@ -4980,3 +4980,101 @@
 
         export default UseOptimisticHook;
         ```
+
+
+## 68) Activity feature in React JS
+- In React 19.2, the `<Activity>` component is introduced as a powerful new primitive built for state-preserving UI management.
+- It provides a mechanism for managing "background activity", allowing us to hide a component tree visually while keeping its React state and DOM structure fully intact in memory.
+- The Core Problem It Solves:
+    - Traditionally, toggling visibility forced developers into a bad trade-off:
+        - **Conditional Rendering** (`{isVisible && <Component />}`):
+            - Destroys the component tree. We lose all internal state (e.g., form inputs, scroll positions), forcing expensive re-fetching and layout rebuilds when toggled back.
+        - **CSS Hiding** (`display: 'none'`):
+            - Preserves the state, but all underlying useEffect hooks and updates continue to run in the background, leading to wasted CPU cycles and unexpected side effects.
+- `<Activity>` component bridges this gap by giving us the best of both worlds:
+    - It physically hides the element.
+    - Pauses its resource consumption, but safely preserves its memory.
+- How It Works: The `mode` Prop:
+    - The component operates via a single `mode` prop, which accepts two values: `visible` and `hidden`:
+        - `visible`:
+            - Shows the children, mounts useEffect hooks, and processes state updates normally.
+        - `hidden`:
+            - Visually hides children via `display: none`, destroys/unmounts effects, and defers all internal updates to low priority.
+- So here, when a hidden `<Activity>` becomes visible again, React restores the previous UI state instantly and safely re-creates its effects.
+- Ideal Use Cases:
+    - Multi-step forms & Dashboards
+    - Pre-rendering future UI
+    - Layouts that are toggled often
+- Example:
+    -   ```jsx
+        // In ActivityFeatureComponent.jsx
+        import { Activity, useState } from "react";
+        import { Button } from "react-bootstrap";
+
+        function ActivityFeature() {
+            const [activeTab, setActiveTab] = useState('step1');
+            return (
+                <div>
+                    <h4>User Form</h4>
+                    <table className="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td>
+                                    <Button
+                                        type="button"
+                                        className="w-full"
+                                        variant={ (activeTab === "step1") ? "primary" : "light" }
+                                        onClick={ () => setActiveTab('step1') }
+                                    >
+                                        Show Step 1
+                                    </Button>
+                                </td>
+                                <td>
+                                    <Button
+                                        type="button"
+                                        className="w-full"
+                                        variant={ (activeTab === "step2") ? "primary" : "light" }
+                                        onClick={() => setActiveTab('step2')}
+                                    >
+                                        Show Step 2
+                                    </Button>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colSpan={2}>
+                                    <Activity mode={ (activeTab === "step1") ? "visible" : "hidden" }>
+                                        <Step1Form></Step1Form>
+                                    </Activity>
+                                    <Activity mode={ (activeTab === "step2") ? "visible" : "hidden" }>
+                                        <Step2Form></Step2Form>
+                                    </Activity>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        function Step1Form() {
+            return (
+                <div>
+                    <label>Name</label>
+                    <input type="text" className="form-control" />
+                </div>
+            );
+        }
+
+        function Step2Form() {
+            return (
+                <div>
+                    <label>Email</label>
+                    <input type="text" className="form-control" />
+                </div>
+            );
+        }
+
+        export default ActivityFeature;
+        ```
