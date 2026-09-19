@@ -5078,3 +5078,41 @@
 
         export default ActivityFeature;
         ```
+
+
+## 69) useEffectEvent hook in React JS
+- The `useEffectEvent` hook, officially supported in React 19.2, is a built-in Hook designed to separate reactive logic from non-reactive logic inside your Effects.
+- It acts as an official convention for the common useRef hack developers used to extract a callback that always sees the latest props and state without triggering an unnecessary Effect re-run.
+- Before React 19.2, if we referenced a variable (like a state or prop) inside a `useEffect`, we had to include it in the dependency array to avoid stale closures.
+- However, doing so forced the entire Effect to tear down and re-run every time that variable changed.
+- Example:
+    -   ```jsx
+        // In UseEffectEventHookComponent.jsx
+        import { useEffect, useEffectEvent, useState } from "react";
+
+        function UseEffectEventHook() {
+            const [useEffectEventCount, setUseEffectEventCount] = useState(0);
+
+            // 1. Extract the non-reactive side-effect logic.
+            // This always sees the latest 'count' state, but it is not reactive.
+            const countControl = useEffectEvent(() => {
+                setUseEffectEventCount(useEffectEventCount + 1);
+            });
+            
+            // 2. Setup the interval inside useEffect.
+            useEffect(() => {
+                const interval = setInterval(() => {
+                    countControl(); // 3. Call the stable event function
+                }, 1000);
+
+                return () => clearInterval(interval);
+            }, []); //  Empty array! The interval starts ONCE and never resets.
+            return (
+                <div>
+                    <h5>Use Effect Event Count: { useEffectEventCount }</h5>
+                </div>
+            );
+        }
+
+        export default UseEffectEventHook;
+        ```

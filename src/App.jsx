@@ -55,6 +55,7 @@ import LazyLoadParent from './LazyLoadParentComponent';
 import UseApi from './UseApiComponent';
 import UseOptimisticHook from './UseOptimisticHookComponent';
 import ActivityFeature from './ActivityFeatureComponent';
+import UseEffectEventHook from './UseEffectEventHookComponent';
 
 function App() {
   return (
@@ -235,6 +236,9 @@ function App() {
       <hr />
       <h2>Activity feature in React JS</h2>
       <ActivityFeature />
+      <hr />
+      <h2>useEffectEvent hook in React JS</h2>
+      <UseEffectEventHook />
     </BrowserRouter>
   )
 }
